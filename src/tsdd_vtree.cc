@@ -1,4 +1,4 @@
-#include "sfdd_vtree.h"
+#include "tsdd_vtree.h"
 #include <algorithm>
 #include <stack>
 #include <fstream>
@@ -9,7 +9,7 @@
 extern std::map<int, int> get_index_by_var;
 
 
-namespace sfdd {
+namespace tsdd {
 
 Vtree::Vtree(const int i) :
     index(i), size(1) {}
@@ -236,4 +236,4 @@ void Vtree::save_vtree_file(const std::string f_name) const {
     f.close();
 }
 
-} // namespace sfdd
+} // namespace tsdd

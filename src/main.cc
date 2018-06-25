@@ -22,10 +22,10 @@
 #include <algorithm>
 #include <assert.h>
 #include <chrono>
-#include "sfdd.h"
+#include "tsdd.h"
 #include <time.h>
 using namespace std;
-using namespace sfdd;
+using namespace tsdd;
 
 
 std::map<int, int> get_index_by_var = {{0,0}};  // x1 stored as "1", x4 stored as "4"...
@@ -44,9 +44,9 @@ int main(int argc, char** argv) {
     addr_t fml;
     unordered_set<addr_t> fmls;
     if (input_cnf_file)
-        fml = manager.cnf_to_sfdd(argv[1], vtree_file);  // for CNF file
+        fml = manager.cnf_to_tsdd(argv[1], vtree_file);  // for CNF file
     else
-        fmls = manager.verilog_to_sfdds(argv[1], vtree_file);  // for Verilog file
+        fmls = manager.verilog_to_tsdds(argv[1], vtree_file);  // for Verilog file
     clock_t finish = clock();
     double ptime = (double)(finish - start) / CLOCKS_PER_SEC;  // runtime
     cout.setf(ios::showpoint);
@@ -68,10 +68,10 @@ int main(int argc, char** argv) {
 
     Manager m(v);
 
-    addr_t x1 = m.sfddVar(1);
-    addr_t x2 = m.sfddVar(2);
-    addr_t x3 = m.sfddVar(3);
-    addr_t x4 = m.sfddVar(4);
+    addr_t x1 = m.tsddVar(1);
+    addr_t x2 = m.tsddVar(2);
+    addr_t x3 = m.tsddVar(3);
+    addr_t x4 = m.tsddVar(4);
 
     addr_t x5 = m.And(x1, x4);
     addr_t x6 = m.And(x1, x2);

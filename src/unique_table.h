@@ -1,6 +1,6 @@
 #ifndef UNQUE_TABLE_H_
 #define UNQUE_TABLE_H_
-#include "sfdd_node.h"
+#include "tsdd_node.h"
 #include <vector>
 #include <stack>
 #include <unordered_map>
@@ -8,45 +8,45 @@
 #include <algorithm>
 
 
-namespace sfdd {
+namespace tsdd {
 
 class UniqueTable {
 public:
 
     UniqueTable() :
-        sfdd_nodes_(),
+        tsdd_nodes_(),
         uniq_table_() {}
 
-    SfddNode& get_node_at(const addr_t i) {
-        auto& n = sfdd_nodes_[i];
+    TsddNode& get_node_at(const addr_t i) {
+        auto& n = tsdd_nodes_[i];
         return n;
     }
-    const SfddNode& get_node_at(const addr_t i) const {
-        auto& n = sfdd_nodes_[i];
+    const TsddNode& get_node_at(const addr_t i) const {
+        auto& n = tsdd_nodes_[i];
         return n;
     }
 
-	addr_t make_sfdd(const SfddNode& new_node) {
-	    // sfdd_nodes_.emplace_back();
-	    size_t node_id = sfdd_nodes_.size();
+	addr_t make_tsdd(const TsddNode& new_node) {
+	    // tsdd_nodes_.emplace_back();
+	    size_t node_id = tsdd_nodes_.size();
 	    uniq_table_.emplace(new_node, node_id);
-	    sfdd_nodes_.push_back(new_node);
+	    tsdd_nodes_.push_back(new_node);
 	    return node_id;
 	}
 
-	addr_t make_or_find(const SfddNode& new_node) {
-	    SfddNode sorted_node = new_node;
+	addr_t make_or_find(const TsddNode& new_node) {
+	    TsddNode sorted_node = new_node;
 	    sort(sorted_node.elements.begin(), sorted_node.elements.end());
 	    auto res = uniq_table_.find(sorted_node);
 	    if (res != uniq_table_.end()) {
 	        return res->second;
 	    }
-	    return make_sfdd(sorted_node);
+	    return make_tsdd(sorted_node);
 	}
 
 public:
-    std::vector<SfddNode> sfdd_nodes_;
-    std::unordered_map<SfddNode, addr_t> uniq_table_;
+    std::vector<TsddNode> tsdd_nodes_;
+    std::unordered_map<TsddNode, addr_t> uniq_table_;
 };
 
 }

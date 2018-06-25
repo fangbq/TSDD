@@ -5,9 +5,9 @@
 #include <tuple>
 #include <iostream>
 #include <algorithm>
-#include "sfdd_node.h"
+#include "tsdd_node.h"
 
-namespace sfdd {
+namespace tsdd {
 
 class CacheTable {
 	using cache_entry = std::tuple<OPERATOR_TYPE, addr_t, addr_t, addr_t>;
@@ -37,7 +37,7 @@ public:
 	        std::get<2>(res) == rhs) {
 	        return std::get<3>(res);
 	    }
-	    return SFDD_NULL;
+	    return TSDD_NULL;
 	}
 
 	size_t calc_key(const OPERATOR_TYPE op, const addr_t lhs,  const addr_t rhs) {
@@ -60,7 +60,7 @@ public:
     std::vector<cache_entry> cache_table_;
 };
 
-} // namespace sfdd;
+} // namespace tsdd;
 
 
 #endif

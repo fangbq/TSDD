@@ -4,7 +4,7 @@ CXX = g++
 CXXFLAGS +=  -O3 -Wall -Wextra -std=c++11 -pg
 
 
-APPS =  sfdd
+APPS =  tsdd
 
 
 SRC=$(shell ls *.cc)
@@ -26,7 +26,7 @@ dep:
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $<
 
 
-sfdd : main.o manager.o sfdd_vtree.o sfdd_node.o readVerilog.o
+tsdd : main.o manager.o tsdd_vtree.o tsdd_node.o readVerilog.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS)  $^ -o $@
 
 -include makefile.depend

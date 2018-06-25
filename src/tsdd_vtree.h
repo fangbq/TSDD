@@ -1,5 +1,5 @@
-#ifndef SFDD_VTREE_H
-#define SFDD_VTREE_H
+#ifndef TSDD_VTREE_H
+#define TSDD_VTREE_H
 
 #include "define.h"
 #include <iostream>
@@ -10,7 +10,7 @@
 #include <unordered_map>
 
 
-namespace sfdd {
+namespace tsdd {
 
 class Vtree {
 public:
@@ -40,6 +40,6 @@ public:
     void save_vtree_file(const std::string f_name) const;
 };
 
-} // namespace sfdd
+} // namespace tsdd
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef SFDD_H
-#define SFDD_H
+#ifndef TSDD_H
+#define TSDD_H
 
 #include "manager.h"
 #include <iostream>
@@ -7,17 +7,17 @@
 #include <set>
 
 
-namespace sfdd {
+namespace tsdd {
 
-class SFDD {
+class TSDD {
 public:
     addr_t addr_ = -1;
     Manager& m;
 public:
-    SFDD(const addr_t addr, Manager& manager) : addr_(addr), m(manager) {}
-    SFDD(const SFDD& sfdd) : addr_(sfdd.addr_), m(sfdd.m) {}
-    SFDD& operator=(const SFDD& sfdd) {
-        addr_ = sfdd.addr_;
+    TSDD(const addr_t addr, Manager& manager) : addr_(addr), m(manager) {}
+    TSDD(const TSDD& tsdd) : addr_(tsdd.addr_), m(tsdd.m) {}
+    TSDD& operator=(const TSDD& tsdd) {
+        addr_ = tsdd.addr_;
         return *this;
     }
     addr_t addr() const { return addr_; }
@@ -31,6 +31,6 @@ public:
     // void save_file_as_dot(const string f_name, const Manager& m) const;
 };
 
-} // namespace sfdd
+} // namespace tsdd
 
 #endif
