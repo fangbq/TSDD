@@ -49,9 +49,9 @@ public:
     addr_t generate_bigoplus_piterms(const Vtree& v);
 
     inline addr_t get_compl_tmn(const addr_t addr_) const { return addr_^1; }
-    inline bool is_terminal(const addr_t addr_) const { return addr_>1 && addr_ <= max_addr_for_lit_; }
-    inline bool is_negative(const addr_t addr_) const { return (addr_ & 1) ==1; }
-    inline bool is_positive(const addr_t addr_) const { return (addr_ & 1) ==0; }
+    // inline bool is_terminal(const addr_t addr_) const { return addr_>1 && addr_ <= max_addr_for_lit_; }
+    // inline bool is_negative(const addr_t addr_) const { return (addr_ & 1) ==1; }
+    // inline bool is_positive(const addr_t addr_) const { return (addr_ & 1) ==0; }
     inline bool is_zero(const addr_t addr_) const { return addr_==0; }
     inline bool is_one(const addr_t addr_) const { return addr_==1; }
 

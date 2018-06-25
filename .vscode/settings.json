@@ -26,6 +26,9 @@
         "utility": "cpp",
         "vector": "cpp",
         "new": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "ratio": "cpp",
+        "system_error": "cpp",
+        "array": "cpp"
     }
 }

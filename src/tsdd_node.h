@@ -39,8 +39,8 @@ public:
     bool operator==(const TsddNode& tsdd_node) const;
 
     bool is_terminal() const;
-    bool is_positive() const;
-    bool is_negative() const;
+    // bool is_positive() const;
+    // bool is_negative() const;
     bool is_zero() const;
     bool is_one() const;
     bool is_constant() const;
