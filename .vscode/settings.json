@@ -29,6 +29,14 @@
         "functional": "cpp",
         "ratio": "cpp",
         "system_error": "cpp",
-        "array": "cpp"
+        "array": "cpp",
+        "memory": "cpp",
+        "chrono": "cpp",
+        "__string": "cpp",
+        "__bit_reference": "cpp",
+        "__functional_base": "cpp",
+        "atomic": "cpp",
+        "limits": "cpp",
+        "tuple": "cpp"
     }
 }

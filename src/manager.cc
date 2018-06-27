@@ -41,8 +41,9 @@ void Manager::initial_node_table_and_piterms_map() {
         uniq_table_.make_tsdd(neg_literal);
     }
     max_addr_for_lit_ = vtree->size+2;
+    
     // create a map for vtree_node and bigoplus_piterms
-    generate_bigoplus_piterms(*vtree);
+    // generate_bigoplus_piterms(*vtree);
 
     // initial lca_table_
     std::vector<int> v;
@@ -156,14 +157,8 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
     TsddNode result_node;
     // 1.2 return false if all elements' subs are false
     if (sameSub) {
-        if (first_sub == false_) return false_;
-        else if (first_sub == true_) return bigoplus_piterms.at(vtree->subvtree(tsdd_node.vtree_index).lt->index);
-        else {
-            Element e(bigoplus_piterms.at(vtree->subvtree(tsdd_node.vtree_index).lt->index), first_sub);
-            result_node.vtree_index = tsdd_node.vtree_index;
-            result_node.elements.push_back(e);
-            return uniq_table_.make_or_find(result_node);
-        }
+        // Trimming: one element, SDD rule 2, {(1, a)} -> a
+        return first_sub;
     }
 
     // 2 compressing
@@ -187,21 +182,75 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
 
     //3 trimming
 // cout << "trimming..." << endl;
-    TsddNode tmp_node = result_node;
     if (result_node.elements.size() == 2) {
-        // {(f, 1), (other-pi-terms\f, 0)} -> f
-        // {(1, f), (other-pi-terms\1, 0)} -> f
         if (result_node.elements[0].second == false_) {
+            // SDD Rule 1: {(a, 1), (¬a, 0)} -> a
             if (result_node.elements[1].second == true_) {
-                return tmp_node.elements[1].first;
-            } else if (result_node.elements[1].first == true_) {
-                return tmp_node.elements[1].second;
+                return result_node.elements[1].first;
             }
-        } else if (result_node.elements[1].second == false_) {
+            TsddNode tmp_pri_ = uniq_table_.tsdd_nodes_.at(result_node.elements[1].first);
+            TsddNode tmp_sub_ = uniq_table_.tsdd_nodes_.at(result_node.elements[1].second);
+            if (tmp_sub_.value == 1 && tmp_sub_.tag_ == vtree->subvtree(result_node.tag_).rt->index) {
+                if (tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+                    // ZSDD Rule 1a: {(a, 𝜀), (¬a, 0)} -> a, t=v^l
+                    int tmp_tag = result_node.vtree_index;
+                    result_node =  result_node.elements[1].first;
+                    result_node.tag_ = tmp_tag;
+                } else {
+                    // ZSDD Rule 1b: {(a, 𝜀), (¬a, 0)} -> a, t≠v^l
+                    result_node.tag_ = result_node.vtree_index;
+                    result_node.vtree_index = vtree->subvtree(result_node.tag_).lt->index;
+                    result_node.elements[1].second = true_;
+                }
+            } else if (tmp_pri_.value == 1 && tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+                if (tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+                    // ZSDD Rule 2a: {(𝜀, a), (¬𝜀, 0)} -> a, t=v^l
+                    int tmp_tag = result_node.vtree_index;
+                    result_node =  result_node.elements[1].second;
+                    result_node.tag_ = tmp_tag;
+                } else {
+                    // ZSDD Rule 2b: {(𝜀, a), (¬𝜀, 0)} -> a, t≠v^l
+                    result_node.tag_ = result_node.vtree_index;
+                    result_node.vtree_index = vtree->subvtree(result_node.tag_).rt->index;
+                    result_node.elements[1].first = true_;
+                    result_node.elements.erase(result_node.elements.begin());
+                }
+            }
+        }
+
+        // opposite case:
+        if (result_node.elements[1].second == false_) {
+            // SDD Rule 1: {(a, 1), (¬a, 0)} -> a
             if (result_node.elements[0].second == true_) {
-                return tmp_node.elements[0].first;
-            } else if (result_node.elements[0].first == true_) {
-                return tmp_node.elements[0].second;
+                return result_node.elements[0].first;
+            }
+            TsddNode tmp_pri_ = uniq_table_.tsdd_nodes_.at(result_node.elements[0].first);
+            TsddNode tmp_sub_ = uniq_table_.tsdd_nodes_.at(result_node.elements[0].second);
+            if (tmp_sub_.value == 1 && tmp_sub_.tag_ == vtree->subvtree(result_node.tag_).rt->index) {
+                if (tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+                    // ZSDD Rule 1a: {(a, 𝜀), (¬a, 0)} -> a, t=v^l
+                    int tmp_tag = result_node.vtree_index;
+                    result_node =  result_node.elements[0].first;
+                    result_node.tag_ = tmp_tag;
+                } else {
+                    // ZSDD Rule 1b: {(a, 𝜀), (¬a, 0)} -> a, t≠v^l
+                    result_node.tag_ = result_node.vtree_index;
+                    result_node.vtree_index = vtree->subvtree(result_node.tag_).lt->index;
+                    result_node.elements[0].second = true_;
+                }
+            } else if (tmp_pri_.value == 1 && tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+                if (tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+                    // ZSDD Rule 2a: {(𝜀, a), (¬𝜀, 0)} -> a, t=v^l
+                    int tmp_tag = result_node.vtree_index;
+                    result_node =  result_node.elements[0].second;
+                    result_node.tag_ = tmp_tag;
+                } else {
+                    // ZSDD Rule 2b: {(𝜀, a), (¬𝜀, 0)} -> a, t≠v^l
+                    result_node.tag_ = result_node.vtree_index;
+                    result_node.vtree_index = vtree->subvtree(result_node.tag_).rt->index;
+                    result_node.elements[0].first = true_;
+                    result_node.elements.erase(result_node.elements.begin()+1);
+                }
             }
         }
     }
@@ -210,23 +259,23 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
     return uniq_table_.make_or_find(result_node);
 }
 
-addr_t Manager::generate_bigoplus_piterms(const Vtree& v) {
-   // check if constant
-   addr_t result;
-   if (v.var) {
-       result = v.var*2 + 1;
-   } else {
-       TsddNode tsdd_node;
-       tsdd_node.vtree_index = v.index;
-       Element e;
-       e.first = generate_bigoplus_piterms(*(v.lt));
-       e.second = generate_bigoplus_piterms(*v.rt);
-       tsdd_node.elements.push_back(e);
-       result = uniq_table_.make_tsdd(tsdd_node);
-    }
-    bigoplus_piterms.emplace(v.index, result);
-    return result;
-}
+// addr_t Manager::generate_bigoplus_piterms(const Vtree& v) {
+//    // check if constant
+//    addr_t result;
+//    if (v.var) {
+//        result = v.var*2 + 1;
+//    } else {
+//        TsddNode tsdd_node;
+//        tsdd_node.vtree_index = v.index;
+//        Element e;
+//        e.first = generate_bigoplus_piterms(*(v.lt));
+//        e.second = generate_bigoplus_piterms(*v.rt);
+//        tsdd_node.elements.push_back(e);
+//        result = uniq_table_.make_tsdd(tsdd_node);
+//     }
+//     bigoplus_piterms.emplace(v.index, result);
+//     return result;
+// }
 
 addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
 // cout << "Intersection..." << endl;
@@ -257,110 +306,8 @@ addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
             std::cerr << "apply error 1" << std::endl;
     }
     TsddNode new_node;
-/* 
-    if (lhs == true_) {
-        if (is_terminal(rhs))
-        {
-            return is_negative(rhs) ? true_ : false_;
-        }
-        addr_t result_ = false_;
-        TsddNode tsdd_node = uniq_table_.get_node_at(rhs);
-        for (const auto& e : tsdd_node.elements)
-            if (apply(true_, e.first, op) == true_) {
-                result_ = apply(true_, e.second, open_memstream);
-                break;
-            }
-        cache_table_.write_cache(INTER, true_, rhs, result_);
-        return result_;
-    }
 
 
-
-
-    // normalizing for both sides
-    TsddNode normalized_tsdd1 = uniq_table_.get_node_at(lhs), normalized_tsdd2 = uniq_table_.get_node_at(rhs);
-
-    if (normalized_tsdd1.vtree_index == normalized_tsdd2.vtree_index) {
-        if (is_terminal(lhs)) {
-            return lhs;
-        }
-        new_node.vtree_index = normalized_tsdd1.vtree_index;
-        if (normalized_tsdd1.elements.size() == 1) {
-            for (std::vector<Element>::const_iterator e2 = normalized_tsdd2.elements.begin();
-            e2 != normalized_tsdd2.elements.end(); ++e2) {
-                Element new_e(e2->first, Intersection(normalized_tsdd1.elements[0].second, e2->second));
-                new_node.elements.push_back(new_e);
-            }
-        } else if (normalized_tsdd2.elements.size() == 1) {
-            for (std::vector<Element>::const_iterator e1 = normalized_tsdd1.elements.begin();
-            e1 != normalized_tsdd1.elements.end(); ++e1) {
-                Element new_e(e1->first, Intersection(normalized_tsdd2.elements[0].second, e1->second));
-                new_node.elements.push_back(new_e);
-            }
-        } else {
-            for (std::vector<Element>::const_iterator e1 = normalized_tsdd1.elements.begin();
-            e1 != normalized_tsdd1.elements.end(); ++e1) {
-                for (std::vector<Element>::const_iterator e2 = normalized_tsdd2.elements.begin();
-                e2 != normalized_tsdd2.elements.end(); ++e2) {
-                    Element new_e;
-                    new_e.first = Intersection(e1->first, e2->first);
-                    if (new_e.first != false_) {
-                        new_e.second = Intersection(e1->second, e2->second);
-                        new_node.elements.push_back(new_e);
-                    }
-                }
-            }
-        }
-    } else {
-        int lca = lca_table_[normalized_tsdd1.vtree_index][normalized_tsdd2.vtree_index];
-		new_node.vtree_index = lca;
-
-        if (lca != normalized_tsdd1.vtree_index && lca != normalized_tsdd2.vtree_index) {
-			return (apply(true_, lhs) == false_ || Intersection(true_, rhs) == false_) ? false_ : true_;
-        } else {
-            addr_t descendant_ = rhs;
-            // set normalized_tsdd1 as higher one (\alpha in paper)
-            if (lca == normalized_tsdd2.vtree_index) {
-                descendant_ = lhs;
-                TsddNode aux_node;
-                aux_node = normalized_tsdd1;
-                normalized_tsdd1 = normalized_tsdd2;
-                normalized_tsdd2 = aux_node;
-            }
-            if (normalized_tsdd2.vtree_index < normalized_tsdd1.vtree_index) {
-                // INT (1)
-                addr_t bigoplus_ = bigoplus_piterms.at(vtree->subvtree(lca).lt->index);
-                if (bigoplus_ == descendant_) {
-                    for (const auto& e : normalized_tsdd1.elements) {
-                        Element new_e(e.first, Intersection(true_, e.second));
-                        new_node.elements.push_back(new_e);
-                    }
-                } else {
-                    // normalized_tsdd2 is a left descendant of normalized_tsdd1 (1)
-                    for (const auto& e : normalized_tsdd1.elements) {
-                        addr_t inter_ = Intersection(e.first, descendant_);
-                        if (inter_ != false_) {
-                            Element new_e(inter_, Intersection(true_, e.second));
-                            new_node.elements.push_back(new_e);
-                        }
-                    }
-                    Element new_e(Xor(bigoplus_, descendant_), false_);
-                    new_node.elements.push_back(new_e);
-                }
-            } else {
-                // normalized_tsdd2 is a right descendant of normalized_tsdd1 (2)
-                for (const auto& e : normalized_tsdd1.elements) {
-                    addr_t inter_ = Intersection(true_, e.first);
-                    if (inter_ != false_) {
-                        Element new_e(inter_, Intersection(e.second, descendant_));
-                        new_node.elements.push_back(new_e);
-                    }
-                }
-                Element new_e(Xor(true_, bigoplus_piterms.at(vtree->subvtree(lca).lt->index)), false_);
-                new_node.elements.push_back(new_e);
-            }
-        }
-    } */
     // std::cout << "before reduce intered node ---------------" << std::endl;
     // print(new_node);
     addr_t new_id = reduced(new_node);

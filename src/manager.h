@@ -26,7 +26,7 @@ public:
     addr_t max_addr_for_lit_ = 0;
 
     // for bigoplus_piterms
-    std::unordered_map<int, addr_t> bigoplus_piterms;
+    // std::unordered_map<int, addr_t> bigoplus_piterms;
 
     // fot getting lca quickly
     std::vector<std::vector<int> > lca_table_;
@@ -46,12 +46,12 @@ public:
 
     // operations
     addr_t reduced(const TsddNode& tsdd_node);  // reducing
-    addr_t generate_bigoplus_piterms(const Vtree& v);
+    // addr_t generate_bigoplus_piterms(const Vtree& v);
 
     inline addr_t get_compl_tmn(const addr_t addr_) const { return addr_^1; }
-    // inline bool is_terminal(const addr_t addr_) const { return addr_>1 && addr_ <= max_addr_for_lit_; }
-    // inline bool is_negative(const addr_t addr_) const { return (addr_ & 1) ==1; }
-    // inline bool is_positive(const addr_t addr_) const { return (addr_ & 1) ==0; }
+    inline bool is_terminal(const addr_t addr_) const { return addr_>1 && addr_ <= max_addr_for_lit_; }
+    inline bool is_negative(const addr_t addr_) const { return (addr_ & 1) ==1; }
+    inline bool is_positive(const addr_t addr_) const { return (addr_ & 1) ==0; }
     inline bool is_zero(const addr_t addr_) const { return addr_==0; }
     inline bool is_one(const addr_t addr_) const { return addr_==1; }
 
