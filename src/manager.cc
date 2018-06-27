@@ -277,36 +277,124 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
 //     return result;
 // }
 
-addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
-// cout << "Intersection..." << endl;
-    if (lhs > rhs) return apply(rhs, lhs, op);
-    if (lhs == rhs || lhs == false_) return lhs;
+TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
+// cout << "cofactors..." << endl;
+    TsddNode tsdd_node = uniq_table_.tsdd_nodes_.at(tsdd_id), new_node;
+    new_node.vtree_index = lca;
+    // set "vtree_index" in apply algorithms, but no here
+    if (tsdd_node.tag_ < lca) {
+        // SDD Rule 1
+        Element e1, e2;
+        e1.first = tsdd_node;
+        e1.second = true_;
+        e2.first = apply(e1.first, true_, XOR);
+        e2.second = false_;
+        new_node.elements.push_back(e1);
+        new_node.elements.push_back(e2);
+    } else if (tsdd_node.tag_ > lca) {
+        // SDD Rule 2
+        Element e;
+        e1.first = true_;
+        e2.second = tsdd_node;
+        new_node.elements.push_back(e);
+    } else if (tsdd_node.vtree_index < lca) {
+        if (tsdd_node.vtree_index == vtree->subvtree(lca).lt->index \
+        && tsdd_node.elements.size() == 2 \
+        && ) {
+            // ZSDD Rule 1b
+            new_node.elements = tsdd_node.elements;
+            if (new_node.elements[0].second == true_) {
 
-    if (is_terminal(lhs) && is_terminal(rhs))
-    {
-        if (get_compl_tmn(lhs) == rhs)
-        {
-            return lhs;
+            } else {
+
+            }
+        } else {
+            // ZSDD Rule 1a
+
         }
-        return (is_negative(lhs) && is_negative(rhs)) ? true_ : false_;
+    } else if (tsdd_node.vtree_index > lca) {
+        if (tsdd_node.vtree_index == vtree->subvtree(lca).rt->index) {
+            // ZSDD Rule 2b
+
+        } else {
+            // ZSDD Rule 2a
+
+        }
+    } else {
+        std::cerr << "cofactors error" << std::endl;
     }
+    return new_node;
+}
 
-    addr_t cache = cache_table_.read_cache(INTER, lhs, rhs);
-    if (cache != TSDD_NULL)
-        return cache;
+addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
+// cout << "apply..." << endl;
+    if (lhs > rhs) return apply(rhs, lhs, op);
 
+    // trivial case
     switch (op) {
         case AND:
+            if (lhs == false_) return lhs;
+            if (lhs == true_) return rhs;
+            if (lhs == rhs) return lhs;
             break;
         case OR:
+            if (lhs == false_) return rhs;
+            if (lhs == true_) return true_;
+            if (lhs == rhs) return lhs;
             break;
         case XOR:
+            if (lhs == false_) return rhs;
+            if (lhs == rhs) return false_;
             break;
         default:
             std::cerr << "apply error 1" << std::endl;
+            return 0;
     }
-    TsddNode new_node;
 
+    addr_t cache = cache_table_.read_cache(op, lhs, rhs);
+    if (cache != TSDD_NULL)
+        return cache;
+
+    TsddNode new_node;
+    TsddNode normalized_tsdd1 = uniq_table_.tsdd_nodes_[lhs], normalized_tsdd2 = uniq_table_.tsdd_nodes_[rhs];
+    if (normalized_tsdd1.vtree_index != normalized_tsdd2.vtree_index) {
+        int lca = vtree->get_lca(normalized_tsdd1.vtree_index, normalized_tsdd2.vtree_index);
+        normalized_tsdd1 = cofactors(lhs, lca);
+        normalized_tsdd2 = cofactors(rhs, lca);
+        new_node.vtree_index = lca;
+    }
+
+    new_node.vtree_index = normalized_tsdd1.vtree_index;
+    
+    if (is_terminal(lhs) && is_terminal(rhs)) {
+        switch (op) {
+            case AND:
+                return false_;
+                break;
+            case OR:
+                return true_;
+                break;
+            case XOR:
+                if (lhs == true_) return rhs^1;
+                return true_;
+                break;
+            default:
+                std::cerr << "apply error 2" << std::endl;
+        }
+    } else {
+        for (std::vector<Element>::const_iterator e1 = normalized_tsdd1.elements.begin();
+        e1 != normalized_tsdd1.elements.end(); ++e1) {
+            for (std::vector<Element>::const_iterator e2 = normalized_tsdd2.elements.begin();
+            e2 != normalized_tsdd2.elements.end(); ++e2) {
+                Element new_e;
+                new_e.first = apply(e1->first, e2->first, op);
+                if (new_e.first != false_) {
+                    new_e.second = apply(e1->second, e2->second, op);
+                    new_node.elements.push_back(new_e);
+                }
+            }
+        }
+    }
 
     // std::cout << "before reduce intered node ---------------" << std::endl;
     // print(new_node);

@@ -46,6 +46,7 @@ public:
 
     // operations
     addr_t reduced(const TsddNode& tsdd_node);  // reducing
+    TsddNode cofactors(const addr_t tsdd_id, int lca);
     // addr_t generate_bigoplus_piterms(const Vtree& v);
 
     inline addr_t get_compl_tmn(const addr_t addr_) const { return addr_^1; }
