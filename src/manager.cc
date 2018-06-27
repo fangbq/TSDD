@@ -35,6 +35,8 @@ Manager::Manager(const Vtree& v, const unsigned int cache_size) :
 };
 
 void Manager::initial_node_table_and_piterms_map() {
+    // alread: 0 - false, 1 - true;
+    // here: 1*2 - x_1, 1*2+1 - -x_1, ..., 
     for (int i = 1; i <= (vtree->size+1)/2; ++i) {
         TsddNode pos_literal(i*2, get_index_by_var[abs(i)]), neg_literal(i*2+1, get_index_by_var[abs(i)]);
         uniq_table_.make_tsdd(pos_literal);
@@ -42,8 +44,15 @@ void Manager::initial_node_table_and_piterms_map() {
     }
     max_addr_for_lit_ = vtree->size+2;
     
-    // create a map for vtree_node and bigoplus_piterms
-    // generate_bigoplus_piterms(*vtree);
+    // create a map for vtree_node and zsdd_trues_
+    for (int i = 1; i <= (vtree->size); ++i) {
+        if (vtree->is_leaf(i)) continue;
+        TsddNode zsdd_true_node(1, 0, i);
+        addr_t zsdd_true = uniq_table_.make_tsdd(zsdd_true_node);
+        zsdd_trues_.emplace(i, zsdd_true);
+        addr_t zsdd_false = apply(zsdd_true, true_, XOR);
+        zsdd_falses_.emplace(i, zsdd_false);
+    }
 
     // initial lca_table_
     std::vector<int> v;
@@ -259,24 +268,6 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
     return uniq_table_.make_or_find(result_node);
 }
 
-// addr_t Manager::generate_bigoplus_piterms(const Vtree& v) {
-//    // check if constant
-//    addr_t result;
-//    if (v.var) {
-//        result = v.var*2 + 1;
-//    } else {
-//        TsddNode tsdd_node;
-//        tsdd_node.vtree_index = v.index;
-//        Element e;
-//        e.first = generate_bigoplus_piterms(*(v.lt));
-//        e.second = generate_bigoplus_piterms(*v.rt);
-//        tsdd_node.elements.push_back(e);
-//        result = uniq_table_.make_tsdd(tsdd_node);
-//     }
-//     bigoplus_piterms.emplace(v.index, result);
-//     return result;
-// }
-
 TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
 // cout << "cofactors..." << endl;
     TsddNode tsdd_node = uniq_table_.tsdd_nodes_.at(tsdd_id), new_node;
@@ -285,7 +276,7 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
     if (tsdd_node.tag_ < lca) {
         // SDD Rule 1
         Element e1, e2;
-        e1.first = tsdd_node;
+        e1.first = tsdd_id;
         e1.second = true_;
         e2.first = apply(e1.first, true_, XOR);
         e2.second = false_;
@@ -294,34 +285,59 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
     } else if (tsdd_node.tag_ > lca) {
         // SDD Rule 2
         Element e;
-        e1.first = true_;
-        e2.second = tsdd_node;
+        e.first = true_;
+        e.second = tsdd_id;
         new_node.elements.push_back(e);
     } else if (tsdd_node.vtree_index < lca) {
         if (tsdd_node.vtree_index == vtree->subvtree(lca).lt->index \
-        && tsdd_node.elements.size() == 2 \
-        && ) {
-            // ZSDD Rule 1b
-            new_node.elements = tsdd_node.elements;
-            if (new_node.elements[0].second == true_) {
-
-            } else {
-
-            }
-        } else {
+        && tsdd_node.elements.size() == 2) {
             // ZSDD Rule 1a
-
+            new_node.elements = tsdd_node.elements;
+            if (new_node.elements[0].second == true_ \
+            && new_node.elements[1].second == false_) {
+                new_node.elements[0].second.tag_ = vtree->subvtree(lca).rt->index;
+                return new_node;
+            } else if (new_node.elements[1].second == true_ \
+            && new_node.elements[0].second == false_) {
+                new_node.elements[1].second.tag_ = vtree->subvtree(lca).rt->index;
+                return new_node;
+            }
         }
+        // ZSDD Rule 1b
+        Element e1, e2;
+        e1.first = tsdd_id;
+        tsdd_node.tag_ = vtree->subvtree(lca).lt->index;
+        e1.first = make_or_find(tsdd_node);
+        e1.second = zsdd_trues_.at(vtree->subvtree(lca).rt->index);
+        e2.first = apply(e1.first, true_, XOR);
+        e2.second = false_;
+        new_node.elements.push_back(e1);
+        new_node.elements.push_back(e2);
+        
     } else if (tsdd_node.vtree_index > lca) {
-        if (tsdd_node.vtree_index == vtree->subvtree(lca).rt->index) {
-            // ZSDD Rule 2b
-
-        } else {
+        if (tsdd_node.vtree_index == vtree->subvtree(lca).rt->index \
+        && tsdd_node.elements.size() == 1) {
             // ZSDD Rule 2a
-
+            Element e1, e2;
+            e1.first = zsdd_trues_.at(vtree->subvtree(lca).lt->index);
+            e1.second = tsdd_node.elements[0].second;
+            e2.first = apply(e1.first, true_, XOR);
+            e2.second = false_;
+            new_node.elements.push_back(e1);
+            new_node.elements.push_back(e2);
+        } else {
+            // ZSDD Rule 2b
+            Element e1, e2;
+            e1.first = zsdd_trues_.at(vtree->subvtree(lca).lt->index);
+            tsdd_node.tag_ = vtree->subvtree(lca).rt->index;
+            e1.second = make_or_find(tsdd_node);
+            e2.first = zsdd_falses_.at(vtree->subvtree(lca).lt->index);
+            e2.second = false_;
+            new_node.elements.push_back(e1);
+            new_node.elements.push_back(e2);
         }
     } else {
-        std::cerr << "cofactors error" << std::endl;
+        std::cerr << "[MyError] cofactors error" << std::endl;
     }
     return new_node;
 }
@@ -347,7 +363,7 @@ addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
             if (lhs == rhs) return false_;
             break;
         default:
-            std::cerr << "apply error 1" << std::endl;
+            std::cerr << "[MyError] apply error 1" << std::endl;
             return 0;
     }
 
@@ -379,7 +395,7 @@ addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
                 return true_;
                 break;
             default:
-                std::cerr << "apply error 2" << std::endl;
+                std::cerr << "[MyError] apply error 2" << std::endl;
         }
     } else {
         for (std::vector<Element>::const_iterator e1 = normalized_tsdd1.elements.begin();

@@ -26,7 +26,8 @@ public:
     addr_t max_addr_for_lit_ = 0;
 
     // for bigoplus_piterms
-    // std::unordered_map<int, addr_t> bigoplus_piterms;
+    std::unordered_map<int, addr_t> zsdd_trues_;
+    std::unordered_map<int, addr_t> zsdd_falses_;
 
     // fot getting lca quickly
     std::vector<std::vector<int> > lca_table_;

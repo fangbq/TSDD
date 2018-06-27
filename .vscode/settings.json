@@ -37,6 +37,8 @@
         "__functional_base": "cpp",
         "atomic": "cpp",
         "limits": "cpp",
-        "tuple": "cpp"
-    }
+        "tuple": "cpp",
+        "*.tcc": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }
