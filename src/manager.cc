@@ -295,11 +295,11 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
             new_node.elements = tsdd_node.elements;
             if (new_node.elements[0].second == true_ \
             && new_node.elements[1].second == false_) {
-                new_node.elements[0].second.tag_ = vtree->subvtree(lca).rt->index;
+                new_node.elements[0].second = zsdd_trues_.at(vtree->subvtree(lca).rt->index);
                 return new_node;
             } else if (new_node.elements[1].second == true_ \
             && new_node.elements[0].second == false_) {
-                new_node.elements[1].second.tag_ = vtree->subvtree(lca).rt->index;
+                new_node.elements[1].second = zsdd_trues_.at(vtree->subvtree(lca).rt->index);
                 return new_node;
             }
         }
@@ -307,7 +307,7 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
         Element e1, e2;
         e1.first = tsdd_id;
         tsdd_node.tag_ = vtree->subvtree(lca).lt->index;
-        e1.first = make_or_find(tsdd_node);
+        e1.first = uniq_table_.make_or_find(tsdd_node);
         e1.second = zsdd_trues_.at(vtree->subvtree(lca).rt->index);
         e2.first = apply(e1.first, true_, XOR);
         e2.second = false_;
@@ -330,7 +330,7 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
             Element e1, e2;
             e1.first = zsdd_trues_.at(vtree->subvtree(lca).lt->index);
             tsdd_node.tag_ = vtree->subvtree(lca).rt->index;
-            e1.second = make_or_find(tsdd_node);
+            e1.second = uniq_table_.make_or_find(tsdd_node);
             e2.first = zsdd_falses_.at(vtree->subvtree(lca).lt->index);
             e2.second = false_;
             new_node.elements.push_back(e1);
