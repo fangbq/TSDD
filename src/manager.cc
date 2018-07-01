@@ -44,14 +44,26 @@ void Manager::initial_node_table_and_piterms_map() {
     }
     max_addr_for_lit_ = vtree->size+2;
     
+    vtree->print();
+    print_tsdd_nodes();
+    std::cout<<"staring loop creat zsdd trues and falses ---------" << std::endl;
     // create a map for vtree_node and zsdd_trues_
     for (int i = 1; i <= (vtree->size); ++i) {
+    std::cout<< i << std::endl;
         if (vtree->is_leaf(i)) continue;
+    std::cout<< i << std::endl;
         TsddNode zsdd_true_node(1, 0, i);
+    std::cout<<"1--------------------------------------------" << std::endl;
         addr_t zsdd_true = uniq_table_.make_tsdd(zsdd_true_node);
+    std::cout<<"2--------------------------------------------" << std::endl;
         zsdd_trues_.emplace(i, zsdd_true);
+    std::cout<<"3--------------------------------------------" << std::endl;
         addr_t zsdd_false = apply(zsdd_true, true_, XOR);
+        print(zsdd_false);
+    std::cout<<"4--------------------------------------------" << std::endl;
         zsdd_falses_.emplace(i, zsdd_false);
+    std::cout<<"5--------------------------------------------" << std::endl;
+    print_tsdd_nodes();
     }
 
     // initial lca_table_
@@ -344,6 +356,9 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
 
 addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
 // cout << "apply..." << endl;
+    print(lhs);
+    std::cout<<"apply with --------------------------------------------" << std::endl;
+    print(rhs);
     if (lhs > rhs) return apply(rhs, lhs, op);
 
     // trivial case
@@ -373,16 +388,26 @@ addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
 
     TsddNode new_node;
     TsddNode normalized_tsdd1 = uniq_table_.tsdd_nodes_[lhs], normalized_tsdd2 = uniq_table_.tsdd_nodes_[rhs];
-    if (normalized_tsdd1.vtree_index != normalized_tsdd2.vtree_index) {
-        int lca = vtree->get_lca(normalized_tsdd1.vtree_index, normalized_tsdd2.vtree_index);
-        normalized_tsdd1 = cofactors(lhs, lca);
-        normalized_tsdd2 = cofactors(rhs, lca);
-        new_node.vtree_index = lca;
-    }
-
-    new_node.vtree_index = normalized_tsdd1.vtree_index;
     
-    if (is_terminal(lhs) && is_terminal(rhs)) {
+    int min_tag = vtree->get_lca(normalized_tsdd1.tag_, normalized_tsdd2.tag_), lca;
+    if (normalized_tsdd1.tag_ == normalized_tsdd2.tag_)
+        lca = vtree->get_lca(normalized_tsdd1.vtree_index, normalized_tsdd2.vtree_index);
+    else
+        lca = min_tag;
+std::cout<<"lca: " << lca << std::endl;
+    
+    normalized_tsdd1 = cofactors(lhs, lca);
+    normalized_tsdd2 = cofactors(rhs, lca);
+    
+    new_node.vtree_index = lca;
+    
+    std::cout<<"normalized_tsdd 1 --------------------------------------------" << std::endl;
+    print(normalized_tsdd1);
+
+    std::cout<<"normalized_tsdd 2 --------------------------------------------" << std::endl;
+    print(normalized_tsdd2);
+
+    if (normalized_tsdd1.is_terminal() && normalized_tsdd2.is_terminal()) {
         switch (op) {
             case AND:
                 return false_;
@@ -412,9 +437,15 @@ addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
         }
     }
 
-    // std::cout << "before reduce intered node ---------------" << std::endl;
-    // print(new_node);
+    std::cout << "before reduce got node ---------------" << std::endl;
+    print(new_node);
     addr_t new_id = reduced(new_node);
+    if (min_tag != lca) {
+        TsddNode new_node2 = uniq_table_.get_node_at(new_id);
+        new_node2.tag_ = min_tag;
+        new_id = uniq_table_.make_or_find(new_node2);
+    }
+
 // std::cout << "got ---------------------" << std::endl;
 // print(new_id);
     cache_table_.write_cache(op, lhs, rhs, new_id);
@@ -427,8 +458,9 @@ void Manager::print(const addr_t addr_, int indent) const {
         for (int i = 0; i < indent; ++i) std::cout << " ";
         if (tsdd_node.value < 2) {
             // std::cout << tsdd_node.value << std::endl;
-            std::cout << tsdd_node.value << " ~ " << tsdd_node.vtree_index << std::endl;
+            std::cout << "-" << tsdd_node.tag_ << "- " << tsdd_node.value << " ~ " << tsdd_node.vtree_index << std::endl;
         } else {
+            std::cout << "-" << tsdd_node.tag_ << "- ";
             if (tsdd_node.is_negative()) std::cout << "-";
             // std::cout << "x" << tsdd_node.value/2 << std::endl;
             std::cout << "x" << tsdd_node.value/2 << " ~ " << tsdd_node.vtree_index << std::endl;
@@ -436,7 +468,7 @@ void Manager::print(const addr_t addr_, int indent) const {
         return;
     }
     for (int i = 0; i < indent; ++i) std::cout << " ";
-    std::cout << "Dec " << tsdd_node.vtree_index << ":" << std::endl;
+    std::cout << "-" << tsdd_node.tag_ << "- Dec " << tsdd_node.vtree_index << ":" << std::endl;
     int counter = 1;
     indent++;
     for (const auto e : tsdd_node.elements) {
@@ -455,8 +487,9 @@ void Manager::print(const TsddNode& tsdd_node, int indent) const {
         for (int i = 0; i < indent; ++i) std::cout << " ";
         if (tsdd_node.value < 2) {
             // std::cout << tsdd_node.value << std::endl;
-            std::cout << tsdd_node.value << " ~ " << tsdd_node.vtree_index << std::endl;
+            std::cout << "-" << tsdd_node.tag_ << "- " << tsdd_node.value << " ~ " << tsdd_node.vtree_index << std::endl;
         } else {
+            std::cout << "-" << tsdd_node.tag_ << "- ";
             if (tsdd_node.is_negative()) std::cout << "-";
             // std::cout << "x" << tsdd_node.value/2 << std::endl;
             std::cout << "x" << tsdd_node.value/2 << " ~ " << tsdd_node.vtree_index << std::endl;
@@ -464,7 +497,7 @@ void Manager::print(const TsddNode& tsdd_node, int indent) const {
         return;
     }
     for (int i = 0; i < indent; ++i) std::cout << " ";
-    std::cout << "Dec " << tsdd_node.vtree_index << ":" << std::endl;
+    std::cout << "-" << tsdd_node.tag_ << "- Dec " << tsdd_node.vtree_index << ":" << std::endl;
     int counter = 1;
     indent++;
     for (const auto& e : tsdd_node.elements) {
@@ -476,6 +509,25 @@ void Manager::print(const TsddNode& tsdd_node, int indent) const {
         print(e.second, indent+1);
     }
     return;
+}
+
+void Manager::print_tsdd_nodes() const {
+    std::cout << "tsdd_nodes_:-------------------------------" << std::endl;
+    int i = 0;
+    for (auto& tsdd_node: uniq_table_.tsdd_nodes_) {
+        std::cout << "Node " << i++ << ":" << std::endl;
+        print(tsdd_node);
+        std::cout << std::endl;
+    }
+}
+
+void Manager::print_unique_table() const {
+    std::cout << "unique_table:-------------------------------" << std::endl;
+    for (auto& x: uniq_table_.uniq_table_) {
+        std::cout << "Node addr_t: " << x.second << std::endl;
+        print(x.first);
+        std::cout << std::endl;
+    }
 }
 
 addr_t Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_file) {

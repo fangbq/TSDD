@@ -27,7 +27,7 @@ public:
     int hash_value = 0;
 public:
     TsddNode() { elements.clear(); }
-    TsddNode(const TsddNode& s) { value = s.value; elements = s.elements; vtree_index = s.vtree_index; }
+    TsddNode(const TsddNode& s) { value = s.value; elements = s.elements; vtree_index = s.vtree_index; tag_ = s.tag_; }
     ~TsddNode() { value = -1; elements.clear(); vtree_index = 0; }
     TsddNode(int v, int i = 0, int t = 0) { elements.clear(); value = v; vtree_index = i; tag_ = t; }
     TsddNode& operator=(const TsddNode& tsdd_node) {

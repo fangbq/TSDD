@@ -62,6 +62,8 @@ public:
     // print node
     void print(const addr_t addr_, int indent = 0) const;
     void print(const TsddNode& tsdd_node, int indent = 0) const;
+    void print_tsdd_nodes() const;
+    void print_unique_table() const;
 
     // read cnf file
     addr_t cnf_to_tsdd(const std::string cnf_file, const std::string vtree_file = "");

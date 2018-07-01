@@ -169,16 +169,16 @@ int Vtree::get_lca(int a, int b) {
     return L ? L : R;  // either one of p,q is on one side OR p,q is not in L&R subtrees
 }
 
-// void Vtree::print(int indent) const {
-//     if (indent == 0)
-//         cout << "Vtree Size: " << size << endl;
-//     for (int i = 0; i < indent; ++i) cout << " ";
-//     cout << index << "  x"+to_string(var) << endl;
-//     // cout << this << endl;
-//     if (lt) lt->print(indent+1);
-//     if (rt) rt->print(indent+1);
-//     return;
-// }
+void Vtree::print(int indent) const {
+    if (indent == 0)
+        std::cout << "Vtree Size: " << size << std::endl;
+    for (int i = 0; i < indent; ++i) std::cout << " ";
+    std::cout << index << "  x"+std::to_string(var) << std::endl;
+    // cout << this << endl;
+    if (lt) lt->print(indent+1);
+    if (rt) rt->print(indent+1);
+    return;
+}
 
 // void Vtree::print_dot(fstream& out_dot, bool root) const {
 //     if (root) out_dot << "graph {" << endl;

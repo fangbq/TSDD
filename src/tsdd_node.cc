@@ -15,7 +15,7 @@ bool TsddNode::operator==(const TsddNode& tsdd_node) const {
     return false;
 }
 
-bool TsddNode::is_terminal() const { return tag_==0 && value!=-1; }
+bool TsddNode::is_terminal() const { return tag_==0; }
 bool TsddNode::is_positive() const { return value>1 && value%2==0; }
 bool TsddNode::is_negative() const { return value>1 && value%2==1; }
 bool TsddNode::is_zero() const { return value==0; }
