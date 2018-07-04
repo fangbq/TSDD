@@ -31,10 +31,10 @@ Manager::Manager(const Vtree& v, const unsigned int cache_size) :
     false_ = uniq_table_.make_tsdd(false_node);
     true_ = uniq_table_.make_tsdd(true_node);
     vtree = new Vtree(v);
-    initial_node_table_and_piterms_map();
+    initial_node_table_and_zsdd_trues();
 };
 
-void Manager::initial_node_table_and_piterms_map() {
+void Manager::initial_node_table_and_zsdd_trues() {
     // alread: 0 - false, 1 - true;
     // here: 1*2 - x_1, 1*2+1 - -x_1, ..., 
     for (int i = 1; i <= (vtree->size+1)/2; ++i) {
@@ -43,29 +43,26 @@ void Manager::initial_node_table_and_piterms_map() {
         uniq_table_.make_tsdd(neg_literal);
     }
     max_addr_for_lit_ = vtree->size+2;
-    
+    /// inital this before apply operation (do apply soon below)
+    initial_depths_by_index(vtree);
+
     vtree->print();
-    print_tsdd_nodes();
-    std::cout<<"staring loop creat zsdd trues and falses ---------" << std::endl;
     // create a map for vtree_node and zsdd_trues_
     for (int i = 1; i <= (vtree->size); ++i) {
-    std::cout<< i << std::endl;
         if (vtree->is_leaf(i)) continue;
-    std::cout<< i << std::endl;
         TsddNode zsdd_true_node(1, 0, i);
-    std::cout<<"1--------------------------------------------" << std::endl;
         addr_t zsdd_true = uniq_table_.make_tsdd(zsdd_true_node);
-    std::cout<<"2--------------------------------------------" << std::endl;
         zsdd_trues_.emplace(i, zsdd_true);
-    std::cout<<"3--------------------------------------------" << std::endl;
-        addr_t zsdd_false = apply(zsdd_true, true_, XOR);
-        print(zsdd_false);
-    std::cout<<"4--------------------------------------------" << std::endl;
+    }
+print_tsdd_nodes();
+    // got all zsdd_trues, then we can get all false_ (must all trues_ firstly)
+    for (int i = 1; i <= (vtree->size); ++i) {
+        if (vtree->is_leaf(i)) continue;
+        addr_t zsdd_false = apply(true_, zsdd_trues_.at(i), XOR);
         zsdd_falses_.emplace(i, zsdd_false);
-    std::cout<<"5--------------------------------------------" << std::endl;
-    print_tsdd_nodes();
     }
 
+print_tsdd_nodes();
     // initial lca_table_
     std::vector<int> v;
     lca_table_.push_back(v);
@@ -77,6 +74,13 @@ void Manager::initial_node_table_and_piterms_map() {
         }
         lca_table_.push_back(table);
     }
+
+}
+
+void Manager::initial_depths_by_index(Vtree* v) {
+    depths_by_index[v->index] = v->depth;
+    if (v->lt) initial_depths_by_index(v->lt);
+    if (v->rt) initial_depths_by_index(v->rt);
 }
 
 Manager::~Manager() {
@@ -276,7 +280,6 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
         }
     }
 
-    // if (result_node.is_terminal()) result_node.vtree_index = get_index_by_var[result_node.value/2];
     return uniq_table_.make_or_find(result_node);
 }
 
@@ -284,23 +287,31 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
 // cout << "cofactors..." << endl;
     TsddNode tsdd_node = uniq_table_.tsdd_nodes_.at(tsdd_id), new_node;
     new_node.vtree_index = lca;
+    std::cout<<"cofactors 1 --------------------------------------------" << std::endl;
+    std::cout<< depths_by_index[lca] << " " << depths_by_index[tsdd_node.tag_] << std::endl;
     // set "vtree_index" in apply algorithms, but no here
-    if (tsdd_node.tag_ < lca) {
-        // SDD Rule 1
-        Element e1, e2;
-        e1.first = tsdd_id;
-        e1.second = true_;
-        e2.first = apply(e1.first, true_, XOR);
-        e2.second = false_;
-        new_node.elements.push_back(e1);
-        new_node.elements.push_back(e2);
-    } else if (tsdd_node.tag_ > lca) {
-        // SDD Rule 2
-        Element e;
-        e.first = true_;
-        e.second = tsdd_id;
-        new_node.elements.push_back(e);
+    if (depths_by_index[lca] < depths_by_index[tsdd_node.tag_]) {
+        if (tsdd_node.tag_ < lca) {
+            // SDD Rule 1
+            Element e1;
+            e1.first = tsdd_id;
+            e1.second = true_;
+            new_node.elements.push_back(e1);
+            if (e1.first != true_) {
+                Element e2;
+                e2.first = apply(true_, e1.first, XOR);
+                e2.second = false_;
+                new_node.elements.push_back(e2);
+            }
+        } else if (tsdd_node.tag_ > lca) {
+            // SDD Rule 2
+            Element e;
+            e.first = true_;
+            e.second = tsdd_id;
+            new_node.elements.push_back(e);
+        }
     } else if (tsdd_node.vtree_index < lca) {
+    std::cout<<"cofactors 2 --------------------------------------------" << std::endl;
         if (tsdd_node.vtree_index == vtree->subvtree(lca).lt->index \
         && tsdd_node.elements.size() == 2) {
             // ZSDD Rule 1a
@@ -315,17 +326,27 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
                 return new_node;
             }
         }
+    std::cout<<"cofactors 3 --------------------------------------------" << std::endl;
         // ZSDD Rule 1b
-        Element e1, e2;
+        Element e1;
         e1.first = tsdd_id;
         tsdd_node.tag_ = vtree->subvtree(lca).lt->index;
+        print_tsdd_nodes();
         e1.first = uniq_table_.make_or_find(tsdd_node);
         e1.second = zsdd_trues_.at(vtree->subvtree(lca).rt->index);
-        e2.first = apply(e1.first, true_, XOR);
-        e2.second = false_;
         new_node.elements.push_back(e1);
-        new_node.elements.push_back(e2);
+        print_tsdd_nodes();
+    std::cout<<"here 1 --------------------------------------------" << std::endl;
+    print(e1.first);
+        if (e1.first != true_) {
+            Element e2;
+            e2.first = apply(true_, e1.first, XOR);
+        std::cout<<"here 2 --------------------------------------------" << std::endl;
+            e2.second = false_;
+            new_node.elements.push_back(e2);
+        }
         
+    std::cout<<"cofactors 4 --------------------------------------------" << std::endl;
     } else if (tsdd_node.vtree_index > lca) {
         if (tsdd_node.vtree_index == vtree->subvtree(lca).rt->index \
         && tsdd_node.elements.size() == 1) {
@@ -333,7 +354,7 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
             Element e1, e2;
             e1.first = zsdd_trues_.at(vtree->subvtree(lca).lt->index);
             e1.second = tsdd_node.elements[0].second;
-            e2.first = apply(e1.first, true_, XOR);
+            e2.first = apply(true_, e1.first, XOR);
             e2.second = false_;
             new_node.elements.push_back(e1);
             new_node.elements.push_back(e2);
@@ -397,12 +418,12 @@ addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
 std::cout<<"lca: " << lca << std::endl;
     
     normalized_tsdd1 = cofactors(lhs, lca);
+    std::cout<<"normalized_tsdd 1 --------------------------------------------" << std::endl;
+    print(normalized_tsdd1);
     normalized_tsdd2 = cofactors(rhs, lca);
     
     new_node.vtree_index = lca;
     
-    std::cout<<"normalized_tsdd 1 --------------------------------------------" << std::endl;
-    print(normalized_tsdd1);
 
     std::cout<<"normalized_tsdd 2 --------------------------------------------" << std::endl;
     print(normalized_tsdd2);
@@ -562,7 +583,7 @@ addr_t Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_
     } else {
         vtree = new Vtree(vtree_file);
     }
-    initial_node_table_and_piterms_map();
+    initial_node_table_and_zsdd_trues();
 
     // v.save_vtree_file("s27_ balanced.vtree");
 
@@ -622,7 +643,7 @@ std::unordered_set<addr_t> Manager::verilog_to_tsdds(char* cnf_file, const std::
         vtree = new Vtree(vtree_file);
     }
 
-    initial_node_table_and_piterms_map();
+    initial_node_table_and_zsdd_trues();
     // std::cout << "readVerilog done;" << std::endl;
 
     std::unordered_set<addr_t> ids;

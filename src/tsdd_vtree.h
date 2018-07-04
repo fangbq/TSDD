@@ -19,6 +19,7 @@ public:
     Vtree* lt = NULL;
     Vtree* rt = NULL;
     int size = 0;
+    int depth = 0;
 public:
     Vtree() {}
     Vtree(const int index);

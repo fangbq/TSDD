@@ -42,6 +42,7 @@ Vtree::Vtree(int start_var_index, int end_var_index, std::vector<int> full_order
             lt = new Vtree(start_var_index, mid-1, full_order, t);
             rt = new Vtree(mid+1, end_var_index, full_order, t);
             size = lt->size + rt->size + 1;
+            depth = std::min(lt->depth, rt->depth)-1;
             break;
         }
         case TRIVIAL_TREE:
@@ -53,6 +54,7 @@ Vtree::Vtree(int start_var_index, int end_var_index, std::vector<int> full_order
             lt = new Vtree(start_var_index, mid-1, full_order, t);
             rt = new Vtree(mid+1, end_var_index, full_order, t);
             size = lt->size + rt->size + 1;
+            depth = std::min(lt->depth, rt->depth)-1;
             break;
         }
         default:
@@ -173,7 +175,7 @@ void Vtree::print(int indent) const {
     if (indent == 0)
         std::cout << "Vtree Size: " << size << std::endl;
     for (int i = 0; i < indent; ++i) std::cout << " ";
-    std::cout << index << "  x"+std::to_string(var) << std::endl;
+    std::cout << index << "(" << depth << ")  x"+std::to_string(var) << std::endl;
     // cout << this << endl;
     if (lt) lt->print(indent+1);
     if (rt) rt->print(indent+1);
