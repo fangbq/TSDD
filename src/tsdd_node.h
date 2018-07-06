@@ -57,7 +57,9 @@ template <> struct hash<tsdd::TsddNode> {
         if (n.value >= 0) {
             tsdd::hash_combine(h, hash<int>()(n.value));
             tsdd::hash_combine(h, hash<int>()(n.vtree_index));
-            tsdd::hash_combine(h, hash<int>()(n.tag_));
+            int nor_tag = n.tag_;
+            if (n.tag_%2==1) nor_tag = 0;
+            tsdd::hash_combine(h, hash<int>()(nor_tag));
             return h;
         } else if (n.value < 0) {
             for (const auto& e : n.elements) {

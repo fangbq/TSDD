@@ -160,6 +160,16 @@ bool Vtree::is_leaf(int i) const {
     return subvtree(i).lt == NULL;
 }
 
+int Vtree::left_child(int i) const {
+    int lc = subvtree(i).lt->index;
+    return lc%2==1 ? 0 : lc;
+}
+
+int Vtree::right_child(int i) const {
+    int rc = subvtree(i).rt->index;
+    return rc%2==1 ? 0 : rc;
+}
+
 int Vtree::get_lca(int a, int b) {
 // cout << "get_lca..." << endl;
     // if (!&v) return 0;

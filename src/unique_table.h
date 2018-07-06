@@ -35,14 +35,12 @@ public:
 	}
 
 	addr_t make_or_find(const TsddNode& new_node) {
-std::cout << "make_or_find .................." << std::endl;
 	    TsddNode sorted_node = new_node;
 	    sort(sorted_node.elements.begin(), sorted_node.elements.end());
 	    auto res = uniq_table_.find(sorted_node);
 	    if (res != uniq_table_.end()) {
 	        return res->second;
 	    }
-std::cout << "no find .................." << std::endl;
 	    return make_tsdd(sorted_node);
 	}
 

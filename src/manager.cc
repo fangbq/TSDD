@@ -48,6 +48,7 @@ void Manager::initial_node_table_and_zsdd_trues() {
 
     vtree->print();
     // create a map for vtree_node and zsdd_trues_
+    zsdd_trues_.emplace(0, true_);
     for (int i = 1; i <= (vtree->size); ++i) {
         if (vtree->is_leaf(i)) continue;
         TsddNode zsdd_true_node(1, 0, i);
@@ -56,6 +57,7 @@ void Manager::initial_node_table_and_zsdd_trues() {
     }
 print_tsdd_nodes();
     // got all zsdd_trues, then we can get all false_ (must all trues_ firstly)
+    zsdd_falses_.emplace(0, false_);
     for (int i = 1; i <= (vtree->size); ++i) {
         if (vtree->is_leaf(i)) continue;
         addr_t zsdd_false = apply(true_, zsdd_trues_.at(i), XOR);
@@ -312,17 +314,17 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
         }
     } else if (tsdd_node.vtree_index < lca) {
     std::cout<<"cofactors 2 --------------------------------------------" << std::endl;
-        if (tsdd_node.vtree_index == vtree->subvtree(lca).lt->index \
+        if (tsdd_node.vtree_index == vtree->left_child(lca) \
         && tsdd_node.elements.size() == 2) {
             // ZSDD Rule 1a
             new_node.elements = tsdd_node.elements;
             if (new_node.elements[0].second == true_ \
             && new_node.elements[1].second == false_) {
-                new_node.elements[0].second = zsdd_trues_.at(vtree->subvtree(lca).rt->index);
+                new_node.elements[0].second = zsdd_trues_.at(vtree->right_child(lca));
                 return new_node;
             } else if (new_node.elements[1].second == true_ \
             && new_node.elements[0].second == false_) {
-                new_node.elements[1].second = zsdd_trues_.at(vtree->subvtree(lca).rt->index);
+                new_node.elements[1].second = zsdd_trues_.at(vtree->right_child(lca));
                 return new_node;
             }
         }
@@ -330,44 +332,49 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
         // ZSDD Rule 1b
         Element e1;
         e1.first = tsdd_id;
-        tsdd_node.tag_ = vtree->subvtree(lca).lt->index;
-        print_tsdd_nodes();
-        e1.first = uniq_table_.make_or_find(tsdd_node);
-        e1.second = zsdd_trues_.at(vtree->subvtree(lca).rt->index);
-        new_node.elements.push_back(e1);
-        print_tsdd_nodes();
     std::cout<<"here 1 --------------------------------------------" << std::endl;
-    print(e1.first);
+        tsdd_node.tag_ = vtree->left_child(lca);
+    std::cout<<"here 2 --------------------------------------------" << std::endl;
+        e1.first = uniq_table_.make_or_find(tsdd_node);
+    std::cout<<"here 3 --------------------------------------------" << std::endl;
+        e1.second = zsdd_trues_.at(vtree->right_child(lca));
+    std::cout<<"here 4 --------------------------------------------" << std::endl;
+        new_node.elements.push_back(e1);
         if (e1.first != true_) {
             Element e2;
             e2.first = apply(true_, e1.first, XOR);
-        std::cout<<"here 2 --------------------------------------------" << std::endl;
             e2.second = false_;
             new_node.elements.push_back(e2);
         }
         
     std::cout<<"cofactors 4 --------------------------------------------" << std::endl;
     } else if (tsdd_node.vtree_index > lca) {
-        if (tsdd_node.vtree_index == vtree->subvtree(lca).rt->index \
+        if (tsdd_node.vtree_index == vtree->right_child(lca) \
         && tsdd_node.elements.size() == 1) {
             // ZSDD Rule 2a
-            Element e1, e2;
-            e1.first = zsdd_trues_.at(vtree->subvtree(lca).lt->index);
+            Element e1;
+            e1.first = zsdd_trues_.at(vtree->left_child(lca));
             e1.second = tsdd_node.elements[0].second;
-            e2.first = apply(true_, e1.first, XOR);
-            e2.second = false_;
             new_node.elements.push_back(e1);
-            new_node.elements.push_back(e2);
+            if (e1.first != true_) {
+                Element e2;
+                e2.first = apply(true_, e1.first, XOR);
+                e2.second = false_;
+                new_node.elements.push_back(e2);
+            }
         } else {
             // ZSDD Rule 2b
-            Element e1, e2;
-            e1.first = zsdd_trues_.at(vtree->subvtree(lca).lt->index);
-            tsdd_node.tag_ = vtree->subvtree(lca).rt->index;
+            Element e1;
+            e1.first = zsdd_trues_.at(vtree->left_child(lca));
+            tsdd_node.tag_ = vtree->right_child(lca);
             e1.second = uniq_table_.make_or_find(tsdd_node);
-            e2.first = zsdd_falses_.at(vtree->subvtree(lca).lt->index);
-            e2.second = false_;
             new_node.elements.push_back(e1);
-            new_node.elements.push_back(e2);
+            if (e1.first != true_) {
+                Element e2;
+                e2.first = zsdd_falses_.at(vtree->left_child(lca));
+                e2.second = false_;
+                new_node.elements.push_back(e2);
+            }
         }
     } else {
         std::cerr << "[MyError] cofactors error" << std::endl;
@@ -429,6 +436,7 @@ std::cout<<"lca: " << lca << std::endl;
     print(normalized_tsdd2);
 
     if (normalized_tsdd1.is_terminal() && normalized_tsdd2.is_terminal()) {
+    std::cout<<"apply terminal =============================" << std::endl;
         switch (op) {
             case AND:
                 return false_;
@@ -444,12 +452,13 @@ std::cout<<"lca: " << lca << std::endl;
                 std::cerr << "[MyError] apply error 2" << std::endl;
         }
     } else {
+    std::cout<<"apply loop ====================================" << std::endl;
         for (std::vector<Element>::const_iterator e1 = normalized_tsdd1.elements.begin();
         e1 != normalized_tsdd1.elements.end(); ++e1) {
             for (std::vector<Element>::const_iterator e2 = normalized_tsdd2.elements.begin();
             e2 != normalized_tsdd2.elements.end(); ++e2) {
                 Element new_e;
-                new_e.first = apply(e1->first, e2->first, op);
+                new_e.first = apply(e1->first, e2->first, AND);
                 if (new_e.first != false_) {
                     new_e.second = apply(e1->second, e2->second, op);
                     new_node.elements.push_back(new_e);

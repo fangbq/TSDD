@@ -33,6 +33,8 @@ public:
     Vtree subvtree(int index) const;  // return subvtree whose root is index
     int father_of(int i) const;
     bool is_leaf(int i) const;  // return if node index is leaf
+    int left_child(int i) const;
+    int right_child(int i) const;
 	int get_lca(int a, int b);  // get the lowest common ancestor of two node
     void print(int indent = 0) const;
     // void print_dot(fstream& out_dot, bool root = false) const;
