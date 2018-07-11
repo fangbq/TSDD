@@ -55,7 +55,6 @@ void Manager::initial_node_table_and_zsdd_trues() {
         addr_t zsdd_true = uniq_table_.make_tsdd(zsdd_true_node);
         zsdd_trues_.emplace(i, zsdd_true);
     }
-print_tsdd_nodes();
     // got all zsdd_trues, then we can get all false_ (must all trues_ firstly)
     zsdd_falses_.emplace(0, false_);
     for (int i = 1; i <= (vtree->size); ++i) {
@@ -64,7 +63,6 @@ print_tsdd_nodes();
         zsdd_falses_.emplace(i, zsdd_false);
     }
 
-print_tsdd_nodes();
     // initial lca_table_
     std::vector<int> v;
     lca_table_.push_back(v);
@@ -289,8 +287,8 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
 // cout << "cofactors..." << endl;
     TsddNode tsdd_node = uniq_table_.tsdd_nodes_.at(tsdd_id), new_node;
     new_node.vtree_index = lca;
-    std::cout<<"cofactors 1 --------------------------------------------" << std::endl;
-    std::cout<< depths_by_index[lca] << " " << depths_by_index[tsdd_node.tag_] << std::endl;
+    // std::cout<<"cofactors 1 --------------------------------------------" << std::endl;
+    // std::cout<< depths_by_index[lca] << " " << depths_by_index[tsdd_node.tag_] << std::endl;
     // set "vtree_index" in apply algorithms, but no here
     if (depths_by_index[lca] < depths_by_index[tsdd_node.tag_]) {
         if (tsdd_node.tag_ < lca) {
@@ -313,7 +311,7 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
             new_node.elements.push_back(e);
         }
     } else if (tsdd_node.vtree_index < lca) {
-    std::cout<<"cofactors 2 --------------------------------------------" << std::endl;
+    // std::cout<<"cofactors 2 --------------------------------------------" << std::endl;
         if (tsdd_node.vtree_index == vtree->left_child(lca) \
         && tsdd_node.elements.size() == 2) {
             // ZSDD Rule 1a
@@ -328,17 +326,13 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
                 return new_node;
             }
         }
-    std::cout<<"cofactors 3 --------------------------------------------" << std::endl;
+    // std::cout<<"cofactors 3 --------------------------------------------" << std::endl;
         // ZSDD Rule 1b
         Element e1;
         e1.first = tsdd_id;
-    std::cout<<"here 1 --------------------------------------------" << std::endl;
         tsdd_node.tag_ = vtree->left_child(lca);
-    std::cout<<"here 2 --------------------------------------------" << std::endl;
         e1.first = uniq_table_.make_or_find(tsdd_node);
-    std::cout<<"here 3 --------------------------------------------" << std::endl;
         e1.second = zsdd_trues_.at(vtree->right_child(lca));
-    std::cout<<"here 4 --------------------------------------------" << std::endl;
         new_node.elements.push_back(e1);
         if (e1.first != true_) {
             Element e2;
@@ -347,7 +341,7 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
             new_node.elements.push_back(e2);
         }
         
-    std::cout<<"cofactors 4 --------------------------------------------" << std::endl;
+    // std::cout<<"cofactors 4 --------------------------------------------" << std::endl;
     } else if (tsdd_node.vtree_index > lca) {
         if (tsdd_node.vtree_index == vtree->right_child(lca) \
         && tsdd_node.elements.size() == 1) {
@@ -384,6 +378,7 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
 
 addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
 // cout << "apply..." << endl;
+    std::cout<<"apply =================================================" << std::endl;
     print(lhs);
     std::cout<<"apply with --------------------------------------------" << std::endl;
     print(rhs);
@@ -436,7 +431,7 @@ std::cout<<"lca: " << lca << std::endl;
     print(normalized_tsdd2);
 
     if (normalized_tsdd1.is_terminal() && normalized_tsdd2.is_terminal()) {
-    std::cout<<"apply terminal =============================" << std::endl;
+    std::cout<<"apply terminal ~~~~~~~~~~~" << std::endl;
         switch (op) {
             case AND:
                 return false_;
@@ -452,7 +447,6 @@ std::cout<<"lca: " << lca << std::endl;
                 std::cerr << "[MyError] apply error 2" << std::endl;
         }
     } else {
-    std::cout<<"apply loop ====================================" << std::endl;
         for (std::vector<Element>::const_iterator e1 = normalized_tsdd1.elements.begin();
         e1 != normalized_tsdd1.elements.end(); ++e1) {
             for (std::vector<Element>::const_iterator e2 = normalized_tsdd2.elements.begin();

@@ -13,11 +13,11 @@ namespace tsdd {
 
 class Manager;
 
-using Element = std::pair<addr_t, addr_t>;
+// using Element = std::pair<addr_t, addr_t>;
+using Element = std::tuple<int, addr_t, int, addr_t>;  // tag 1, prime, tag 2, sub
 
 class TsddNode {
 public:
-    int tag_ = 0;
     int value = -1;  /* terminal nodes: 0 respects false, 1 respects true; 2*x respects the xth variable (x);
                         2*x+1 respects the negation of the xth variable (-x);
                         nonterminal: -1
