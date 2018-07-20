@@ -151,7 +151,7 @@ int Vtree::father_of(int i) const {
     else if (i > index) return rt->father_of(i);
     else {
         std::cerr << "father_of error!" << std::endl;
-        exit(1);
+        exit(1); 
     }
 }
 

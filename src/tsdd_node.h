@@ -4,6 +4,7 @@
 #include <vector>
 #include <iostream>
 #include "define.h"
+#include "tsdd.h"
 #include "tsdd_vtree.h"
 #include <unordered_set>
 #include <type_traits>
@@ -14,7 +15,7 @@ namespace tsdd {
 class Manager;
 
 // using Element = std::pair<addr_t, addr_t>;
-using Element = std::tuple<int, addr_t, int, addr_t>;  // tag 1, prime, tag 2, sub
+using Element = std::pair<Tsdd, Tsdd>;  // tag 1, prime, tag 2, sub
 
 class TsddNode {
 public:
@@ -27,14 +28,13 @@ public:
     int hash_value = 0;
 public:
     TsddNode() { elements.clear(); }
-    TsddNode(const TsddNode& s) { value = s.value; elements = s.elements; vtree_index = s.vtree_index; tag_ = s.tag_; }
+    TsddNode(const TsddNode& s) { value = s.value; elements = s.elements; vtree_index = s.vtree_index; }
     ~TsddNode() { value = -1; elements.clear(); vtree_index = 0; }
-    TsddNode(int v, int i = 0, int t = 0) { elements.clear(); value = v; vtree_index = i; tag_ = t; }
+    TsddNode(int v, int i = 0, int t = 0) { elements.clear(); value = v; vtree_index = i; }
     TsddNode& operator=(const TsddNode& tsdd_node) {
         value = tsdd_node.value;
         elements = tsdd_node.elements;
         vtree_index = tsdd_node.vtree_index;
-        tag_ = tsdd_node.tag_;
         return *this;
     }
     bool operator==(const TsddNode& tsdd_node) const;
@@ -51,20 +51,20 @@ public:
 } // namespace tsdd
 
 namespace std {
+
+// class Tsdd;
+
 template <> struct hash<tsdd::TsddNode> {
     std::size_t operator()(const tsdd::TsddNode& n) const {
         size_t h = 0;
         if (n.value >= 0) {
             tsdd::hash_combine(h, hash<int>()(n.value));
             tsdd::hash_combine(h, hash<int>()(n.vtree_index));
-            int nor_tag = n.tag_;
-            if (n.tag_%2==1) nor_tag = 0;
-            tsdd::hash_combine(h, hash<int>()(nor_tag));
             return h;
         } else if (n.value < 0) {
             for (const auto& e : n.elements) {
-                tsdd::hash_combine(h, hash<tsdd::addr_t>()(e.first));
-                tsdd::hash_combine(h, hash<tsdd::addr_t>()(e.second));
+                tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.first));
+                tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.second));
             }
             tsdd::hash_combine(h, hash<int>()(n.vtree_index));
         }

@@ -19,17 +19,23 @@ using namespace std::chrono;
 namespace tsdd {
 
 Manager::Manager() {
-    TsddNode true_node(1), false_node(0);
-    false_ = uniq_table_.make_tsdd(false_node);
-    true_ = uniq_table_.make_tsdd(true_node);
+    TsddNode false_node(0);
+    uniq_table_.make_tsdd(false_node);
+    for (int i = 1; i <= vtree->size; ++i) {
+        TsddNode true_node(1, i);
+        uniq_table_.make_tsdd(true_node);
+    }
     // std::cout << "Manager bad initialization !!!" << std::endl;
 }
 
 Manager::Manager(const Vtree& v, const unsigned int cache_size) :
     cache_table_(cache_size) {
-    TsddNode true_node(1), false_node(0);
-    false_ = uniq_table_.make_tsdd(false_node);
-    true_ = uniq_table_.make_tsdd(true_node);
+    TsddNode false_node(0);
+    uniq_table_.make_tsdd(false_node);
+    for (int i = 1; i <= vtree->size; ++i) {
+        TsddNode true_node(1, i);
+        uniq_table_.make_tsdd(true_node);
+    }
     vtree = new Vtree(v);
     initial_node_table_and_zsdd_trues();
 };
@@ -47,21 +53,21 @@ void Manager::initial_node_table_and_zsdd_trues() {
     initial_depths_by_index(vtree);
 
     vtree->print();
-    // create a map for vtree_node and zsdd_trues_
-    zsdd_trues_.emplace(0, true_);
-    for (int i = 1; i <= (vtree->size); ++i) {
-        if (vtree->is_leaf(i)) continue;
-        TsddNode zsdd_true_node(1, 0, i);
-        addr_t zsdd_true = uniq_table_.make_tsdd(zsdd_true_node);
-        zsdd_trues_.emplace(i, zsdd_true);
-    }
-    // got all zsdd_trues, then we can get all false_ (must all trues_ firstly)
-    zsdd_falses_.emplace(0, false_);
-    for (int i = 1; i <= (vtree->size); ++i) {
-        if (vtree->is_leaf(i)) continue;
-        addr_t zsdd_false = apply(true_, zsdd_trues_.at(i), XOR);
-        zsdd_falses_.emplace(i, zsdd_false);
-    }
+    // // create a map for vtree_node and zsdd_trues_
+    // zsdd_trues_.emplace(0, true_);
+    // for (int i = 1; i <= (vtree->size); ++i) {
+    //     if (vtree->is_leaf(i)) continue;
+    //     TsddNode zsdd_true_node(1, 0, i);
+    //     addr_t zsdd_true = uniq_table_.make_tsdd(zsdd_true_node);
+    //     zsdd_trues_.emplace(i, zsdd_true);
+    // }
+    // // got all zsdd_trues, then we can get all false_ (must all trues_ firstly)
+    // zsdd_falses_.emplace(0, false_);
+    // for (int i = 1; i <= (vtree->size); ++i) {
+    //     if (vtree->is_leaf(i)) continue;
+    //     addr_t zsdd_false = apply(true_, zsdd_trues_.at(i), XOR);
+    //     zsdd_falses_.emplace(i, zsdd_false);
+    // }
 
     // initial lca_table_
     std::vector<int> v;
@@ -92,27 +98,27 @@ addr_t Manager::tsddVar(const int tmp_var) {
     return (tmp_var < 0 ? (-tmp_var)*2+1 : tmp_var*2);
 }
 
-unsigned long long Manager::size(const addr_t tsdd_id) const {
-    if (is_terminal(tsdd_id)) return 0;
+unsigned long long Manager::size(const Tsdd& tsdd) const {
+    if (is_terminal(tsdd)) return 0;
 
-    std::unordered_set<addr_t> node_ids;
-    std::stack<addr_t> unexpanded;
-    unexpanded.push(tsdd_id);
+    std::unordered_set<Tsdd> tsdd_ids;
+    std::stack<Tsdd> unexpanded;
+    unexpanded.push(tsdd);
 
     while (!unexpanded.empty()) {
-        addr_t e = unexpanded.top();
+        Tsdd t = unexpanded.top();
         unexpanded.pop();
 
-        node_ids.insert(e);
-        const TsddNode& n = uniq_table_.get_node_at(e);
+        tsdd_ids.insert(t);
+        const TsddNode& n = uniq_table_.get_node_at(t.addr_);
         if (n.value < 0) {
             for (const Element e : n.elements) {
-                if (node_ids.find(e.first) == node_ids.end()) {
-                    node_ids.insert(e.first);
+                if (tsdd_ids.find(e.first) == tsdd_ids.end()) {
+                    tsdd_ids.insert(e.first);
                     unexpanded.push(e.first);
                 }
-                if (node_ids.find(e.second) == node_ids.end()) {
-                    node_ids.insert(e.second);
+                if (tsdd_ids.find(e.second) == tsdd_ids.end()) {
+                    tsdd_ids.insert(e.second);
                     unexpanded.push(e.second);
                 }
             }
@@ -120,7 +126,7 @@ unsigned long long Manager::size(const addr_t tsdd_id) const {
     }
 
     unsigned long long int size = 0LLU;
-    for (const auto& i : node_ids) {
+    for (const auto& i : tsdd_ids) {
         const TsddNode& n = uniq_table_.get_node_at(i);
         if (n.value < 0) {
             size += n.elements.size();
@@ -129,48 +135,10 @@ unsigned long long Manager::size(const addr_t tsdd_id) const {
     return size;
 }
 
-unsigned long long Manager::size(const std::unordered_set<addr_t> tsdd_ids) const {
-    std::unordered_set<addr_t> node_ids;
-    std::stack<addr_t> unexpanded;
-    for (const auto& id : tsdd_ids) {
-        if (is_terminal(id)) continue;
-        unexpanded.push(id);
-    }
-
-    while (!unexpanded.empty()) {
-        addr_t e = unexpanded.top();
-        unexpanded.pop();
-
-        node_ids.insert(e);
-        const TsddNode& n = uniq_table_.get_node_at(e);
-        if (n.value < 0) {
-            for (const Element e : n.elements) {
-                if (node_ids.find(e.first) == node_ids.end()) {
-                    node_ids.insert(e.first);
-                    unexpanded.push(e.first);
-                }
-                if (node_ids.find(e.second) == node_ids.end()) {
-                    node_ids.insert(e.second);
-                    unexpanded.push(e.second);
-                }
-            }
-        }
-    }
-
-    unsigned long long int size = 0LLU;
-    for (const auto& i : node_ids) {
-        const TsddNode& n = uniq_table_.get_node_at(i);
-        if (n.value < 0) {
-            size += n.elements.size();
-        }
-    }
-    return size;
-}
-
-addr_t Manager::reduced(const TsddNode& tsdd_node) {
+Tsdd Manager::reduced(const TsddNode& tsdd_node) {
 // cout << "reduced..." << endl;
     bool sameSub = true;
-    addr_t first_sub = tsdd_node.elements.front().second;
+    TSDD first_sub = tsdd_node.elements.front().second;
     for (const auto& e : tsdd_node.elements) {
         if (e.second != first_sub)
         {
@@ -180,9 +148,10 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
     }
 
     TsddNode result_node;
+    Tsdd result_tsdd;
     // 1.2 return false if all elements' subs are false
     if (sameSub) {
-        // Trimming: one element, SDD rule 2, {(1, a)} -> a
+        // Trimming: one element, SDD Rule 2, {(1, a)} -> a
         return first_sub;
     }
 
@@ -205,74 +174,78 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
             ++e1;
     }
 
-    //3 trimming
+    //3 Trimming
 // cout << "trimming..." << endl;
     if (result_node.elements.size() == 2) {
-        if (result_node.elements[0].second == false_) {
+        if (is_false(result_node.elements[0].second)) {
             // SDD Rule 1: {(a, 1), (¬a, 0)} -> a
-            if (result_node.elements[1].second == true_) {
+            if (is_true(result_node.elements[1].second)) {
                 return result_node.elements[1].first;
             }
-            TsddNode tmp_pri_ = uniq_table_.tsdd_nodes_.at(result_node.elements[1].first);
-            TsddNode tmp_sub_ = uniq_table_.tsdd_nodes_.at(result_node.elements[1].second);
-            if (tmp_sub_.value == 1 && tmp_sub_.tag_ == vtree->subvtree(result_node.tag_).rt->index) {
-                if (tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+            int tmp_pri_tag = result_node.elements[1].first.tag_;
+            int tmp_sub_tag = result_node.elements[1].second.tag_;
+            TsddNode tmp_pri_ = uniq_table_.tsdd_nodes_.at(result_node.elements[1].first.addr_);
+            TsddNode tmp_sub_ = uniq_table_.tsdd_nodes_.at(result_node.elements[1].second.addr_);
+            if (tmp_sub_.value == 1 && tmp_sub_.tag_ == vtree->subvtree(result_tsdd.tag_).rt->index) {
+                if (tmp_pri_tag == vtree->subvtree(result_tsdd.tag_).lt->index) {
                     // ZSDD Rule 1a: {(a, 𝜀), (¬a, 0)} -> a, t=v^l
                     int tmp_tag = result_node.vtree_index;
                     result_node =  result_node.elements[1].first;
-                    result_node.tag_ = tmp_tag;
+                    result_tsdd.tag_ = tmp_tag;
                 } else {
                     // ZSDD Rule 1b: {(a, 𝜀), (¬a, 0)} -> a, t≠v^l
-                    result_node.tag_ = result_node.vtree_index;
-                    result_node.vtree_index = vtree->subvtree(result_node.tag_).lt->index;
+                    result_tsdd.tag_ = result_node.vtree_index;
+                    result_node.vtree_index = vtree->subvtree(result_tsdd.tag_).lt->index;
                     result_node.elements[1].second = true_;
                 }
-            } else if (tmp_pri_.value == 1 && tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
-                if (tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+            } else if (tmp_pri_.value == 1 && tmp_pri_tag == vtree->subvtree(result_tsdd.tag_).lt->index) {
+                if (tmp_pri_tag == vtree->subvtree(result_tsdd.tag_).lt->index) {
                     // ZSDD Rule 2a: {(𝜀, a), (¬𝜀, 0)} -> a, t=v^l
                     int tmp_tag = result_node.vtree_index;
                     result_node =  result_node.elements[1].second;
-                    result_node.tag_ = tmp_tag;
+                    result_tsdd.tag_ = tmp_tag;
                 } else {
                     // ZSDD Rule 2b: {(𝜀, a), (¬𝜀, 0)} -> a, t≠v^l
-                    result_node.tag_ = result_node.vtree_index;
-                    result_node.vtree_index = vtree->subvtree(result_node.tag_).rt->index;
+                    result_tsdd.tag_ = result_node.vtree_index;
+                    result_node.vtree_index = vtree->subvtree(result_tsdd.tag_).rt->index;
                     result_node.elements[1].first = true_;
                     result_node.elements.erase(result_node.elements.begin());
                 }
             }
         }
 
-        // opposite case:
-        if (result_node.elements[1].second == false_) {
+        // opposite case: this can be replaced by a exchange step later!!!
+        if (is_false(result_node.elements[1].second)) {
             // SDD Rule 1: {(a, 1), (¬a, 0)} -> a
-            if (result_node.elements[0].second == true_) {
+            if (is_true(result_node.elements[0].second)) {
                 return result_node.elements[0].first;
             }
-            TsddNode tmp_pri_ = uniq_table_.tsdd_nodes_.at(result_node.elements[0].first);
-            TsddNode tmp_sub_ = uniq_table_.tsdd_nodes_.at(result_node.elements[0].second);
-            if (tmp_sub_.value == 1 && tmp_sub_.tag_ == vtree->subvtree(result_node.tag_).rt->index) {
-                if (tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+            int tmp_pri_tag = result_node.elements[0].first.tag_;
+            int tmp_sub_tag = result_node.elements[0].second.tag_;
+            TsddNode tmp_pri_ = uniq_table_.tsdd_nodes_.at(result_node.elements[0].first.addr_);
+            TsddNode tmp_sub_ = uniq_table_.tsdd_nodes_.at(result_node.elements[0].second.addr_);
+            if (tmp_sub_.value == 1 && tmp_sub_.tag_ == vtree->subvtree(result_tsdd.tag_).rt->index) {
+                if (tmp_pri_tag == vtree->subvtree(result_tsdd.tag_).lt->index) {
                     // ZSDD Rule 1a: {(a, 𝜀), (¬a, 0)} -> a, t=v^l
                     int tmp_tag = result_node.vtree_index;
                     result_node =  result_node.elements[0].first;
-                    result_node.tag_ = tmp_tag;
+                    result_tsdd.tag_ = tmp_tag;
                 } else {
                     // ZSDD Rule 1b: {(a, 𝜀), (¬a, 0)} -> a, t≠v^l
-                    result_node.tag_ = result_node.vtree_index;
-                    result_node.vtree_index = vtree->subvtree(result_node.tag_).lt->index;
+                    result_tsdd.tag_ = result_node.vtree_index;
+                    result_node.vtree_index = vtree->subvtree(result_tsdd.tag_).lt->index;
                     result_node.elements[0].second = true_;
                 }
-            } else if (tmp_pri_.value == 1 && tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
-                if (tmp_pri_.tag_ == vtree->subvtree(result_node.tag_).lt->index) {
+            } else if (tmp_pri_.value == 1 && tmp_pri_tag == vtree->subvtree(result_tsdd.tag_).lt->index) {
+                if (tmp_pri_tag == vtree->subvtree(result_tsdd.tag_).lt->index) {
                     // ZSDD Rule 2a: {(𝜀, a), (¬𝜀, 0)} -> a, t=v^l
                     int tmp_tag = result_node.vtree_index;
                     result_node =  result_node.elements[0].second;
-                    result_node.tag_ = tmp_tag;
+                    result_tsdd.tag_ = tmp_tag;
                 } else {
                     // ZSDD Rule 2b: {(𝜀, a), (¬𝜀, 0)} -> a, t≠v^l
-                    result_node.tag_ = result_node.vtree_index;
-                    result_node.vtree_index = vtree->subvtree(result_node.tag_).rt->index;
+                    result_tsdd.tag_ = result_node.vtree_index;
+                    result_node.vtree_index = vtree->subvtree(result_tsdd.tag_).rt->index;
                     result_node.elements[0].first = true_;
                     result_node.elements.erase(result_node.elements.begin()+1);
                 }
@@ -280,21 +253,23 @@ addr_t Manager::reduced(const TsddNode& tsdd_node) {
         }
     }
 
-    return uniq_table_.make_or_find(result_node);
+    result_tsdd.addr_ = uniq_table_.make_or_find(result_node);
+    return result_tsdd;
 }
 
-TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
+TsddNode Manager::cofactors(const Tsdd& tsdd, int lca) {
 // cout << "cofactors..." << endl;
-    TsddNode tsdd_node = uniq_table_.tsdd_nodes_.at(tsdd_id), new_node;
+    TsddNode tsdd_node = uniq_table_.tsdd_nodes_.at(tsdd.addr_), new_node;
+    int tsdd_tag = tsdd.tag_;
     new_node.vtree_index = lca;
     // std::cout<<"cofactors 1 --------------------------------------------" << std::endl;
-    // std::cout<< depths_by_index[lca] << " " << depths_by_index[tsdd_node.tag_] << std::endl;
+    // std::cout<< depths_by_index[lca] << " " << depths_by_index[tsdd_tag] << std::endl;
     // set "vtree_index" in apply algorithms, but no here
-    if (depths_by_index[lca] < depths_by_index[tsdd_node.tag_]) {
-        if (tsdd_node.tag_ < lca) {
+    if (depths_by_index[lca] < depths_by_index[tsdd_tag]) {
+        if (tsdd_tag < lca) {
             // SDD Rule 1
             Element e1;
-            e1.first = tsdd_id;
+            e1.first = tsdd.addr_;
             e1.second = true_;
             new_node.elements.push_back(e1);
             if (e1.first != true_) {
@@ -303,11 +278,11 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
                 e2.second = false_;
                 new_node.elements.push_back(e2);
             }
-        } else if (tsdd_node.tag_ > lca) {
+        } else if (tsdd_tag > lca) {
             // SDD Rule 2
             Element e;
             e.first = true_;
-            e.second = tsdd_id;
+            e.second = tsdd.addr_;
             new_node.elements.push_back(e);
         }
     } else if (tsdd_node.vtree_index < lca) {
@@ -316,12 +291,12 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
         && tsdd_node.elements.size() == 2) {
             // ZSDD Rule 1a
             new_node.elements = tsdd_node.elements;
-            if (new_node.elements[0].second == true_ \
-            && new_node.elements[1].second == false_) {
+            if (is_true(new_node.elements[0].second) \
+            && is_false(new_node.elements[1].second)) {
                 new_node.elements[0].second = zsdd_trues_.at(vtree->right_child(lca));
                 return new_node;
-            } else if (new_node.elements[1].second == true_ \
-            && new_node.elements[0].second == false_) {
+            } else if (is_true(new_node.elements[1].second) \
+            && is_false(new_node.elements[0].second)) {
                 new_node.elements[1].second = zsdd_trues_.at(vtree->right_child(lca));
                 return new_node;
             }
@@ -329,8 +304,8 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
     // std::cout<<"cofactors 3 --------------------------------------------" << std::endl;
         // ZSDD Rule 1b
         Element e1;
-        e1.first = tsdd_id;
-        tsdd_node.tag_ = vtree->left_child(lca);
+        e1.first = tsdd.addr_;
+        tsdd_tag = vtree->left_child(lca);
         e1.first = uniq_table_.make_or_find(tsdd_node);
         e1.second = zsdd_trues_.at(vtree->right_child(lca));
         new_node.elements.push_back(e1);
@@ -360,7 +335,7 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
             // ZSDD Rule 2b
             Element e1;
             e1.first = zsdd_trues_.at(vtree->left_child(lca));
-            tsdd_node.tag_ = vtree->right_child(lca);
+            tsdd_tag = vtree->right_child(lca);
             e1.second = uniq_table_.make_or_find(tsdd_node);
             new_node.elements.push_back(e1);
             if (e1.first != true_) {
@@ -376,28 +351,32 @@ TsddNode Manager::cofactors(const addr_t tsdd_id, int lca) {
     return new_node;
 }
 
-addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
+Tsdd Manager::apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op) {
 // cout << "apply..." << endl;
+    int lhs_tag = lhs_tsdd.tag_;
+    int rhs_tag = rhs_tsdd.tag_;
+    addr_t lhs = lhs_tsdd.addr_;
+    addr_t rhs = rhs_tsdd.addr_;
     std::cout<<"apply =================================================" << std::endl;
     print(lhs);
     std::cout<<"apply with --------------------------------------------" << std::endl;
     print(rhs);
-    if (lhs > rhs) return apply(rhs, lhs, op);
+//    if (lhs > rhs) return apply(rhs_tsdd, lhs_tsdd, op); how to exchange? !!!
 
     // trivial case
     switch (op) {
         case AND:
-            if (lhs == false_) return lhs;
-            if (lhs == true_) return rhs;
-            if (lhs == rhs) return lhs;
+            if (is_false(lhs_tsdd)) return lhs_tsdd;
+            if (is_true(lhs_tsdd)) return rhs_tsdd;
+            if (lhs == rhs) return lhs_tsdd;
             break;
         case OR:
-            if (lhs == false_) return rhs;
-            if (lhs == true_) return true_;
-            if (lhs == rhs) return lhs;
+            if (is_false(lhs_tsdd)) return rhs_tsdd;
+            if (is_true(lhs_tsdd)) return lhs_tsdd;
+            if (lhs == rhs) return lhs_tsdd;
             break;
         case XOR:
-            if (lhs == false_) return rhs;
+            if (is_false(lhs_tsdd)) return rhs_tsdd;
             if (lhs == rhs) return false_;
             break;
         default:
@@ -412,8 +391,8 @@ addr_t Manager::apply(const addr_t lhs, const addr_t rhs, OPERATOR_TYPE op) {
     TsddNode new_node;
     TsddNode normalized_tsdd1 = uniq_table_.tsdd_nodes_[lhs], normalized_tsdd2 = uniq_table_.tsdd_nodes_[rhs];
     
-    int min_tag = vtree->get_lca(normalized_tsdd1.tag_, normalized_tsdd2.tag_), lca;
-    if (normalized_tsdd1.tag_ == normalized_tsdd2.tag_)
+    int min_tag = vtree->get_lca(lhs_tag, rhs_tag), lca;
+    if (lhs_tag == rhs_tag)
         lca = vtree->get_lca(normalized_tsdd1.vtree_index, normalized_tsdd2.vtree_index);
     else
         lca = min_tag;
@@ -440,7 +419,7 @@ std::cout<<"lca: " << lca << std::endl;
                 return true_;
                 break;
             case XOR:
-                if (lhs == true_) return rhs^1;
+                if (is_true(lhs)) return rhs^1;
                 return true_;
                 break;
             default:
@@ -453,7 +432,7 @@ std::cout<<"lca: " << lca << std::endl;
             e2 != normalized_tsdd2.elements.end(); ++e2) {
                 Element new_e;
                 new_e.first = apply(e1->first, e2->first, AND);
-                if (new_e.first != false_) {
+                if (!is_false(new_e.first)) {
                     new_e.second = apply(e1->second, e2->second, op);
                     new_node.elements.push_back(new_e);
                 }
@@ -476,15 +455,16 @@ std::cout<<"lca: " << lca << std::endl;
     return new_id;
 }
 
-void Manager::print(const addr_t addr_, int indent) const {
-    TsddNode tsdd_node = uniq_table_.get_node_at(addr_);
+void Manager::print(const Tsdd& tsdd, int indent) const {
+    TsddNode tsdd_node = uniq_table_.get_node_at(tsdd.addr_);
+    int tsdd_tag = tsdd.tag_;
     if (tsdd_node.elements.empty()) {
         for (int i = 0; i < indent; ++i) std::cout << " ";
         if (tsdd_node.value < 2) {
             // std::cout << tsdd_node.value << std::endl;
-            std::cout << "-" << tsdd_node.tag_ << "- " << tsdd_node.value << " ~ " << tsdd_node.vtree_index << std::endl;
+            std::cout << "-" << tsdd_tag << "- " << tsdd_node.value << " ~ " << tsdd_node.vtree_index << std::endl;
         } else {
-            std::cout << "-" << tsdd_node.tag_ << "- ";
+            std::cout << "-" << tsdd_tag << "- ";
             if (tsdd_node.is_negative()) std::cout << "-";
             // std::cout << "x" << tsdd_node.value/2 << std::endl;
             std::cout << "x" << tsdd_node.value/2 << " ~ " << tsdd_node.vtree_index << std::endl;
@@ -492,7 +472,7 @@ void Manager::print(const addr_t addr_, int indent) const {
         return;
     }
     for (int i = 0; i < indent; ++i) std::cout << " ";
-    std::cout << "-" << tsdd_node.tag_ << "- Dec " << tsdd_node.vtree_index << ":" << std::endl;
+    std::cout << "-" << tsdd_tag << "- Dec " << tsdd_node.vtree_index << ":" << std::endl;
     int counter = 1;
     indent++;
     for (const auto e : tsdd_node.elements) {
@@ -511,9 +491,9 @@ void Manager::print(const TsddNode& tsdd_node, int indent) const {
         for (int i = 0; i < indent; ++i) std::cout << " ";
         if (tsdd_node.value < 2) {
             // std::cout << tsdd_node.value << std::endl;
-            std::cout << "-" << tsdd_node.tag_ << "- " << tsdd_node.value << " ~ " << tsdd_node.vtree_index << std::endl;
+            std::cout << "-no-tag- " << tsdd_node.value << " ~ " << tsdd_node.vtree_index << std::endl;
         } else {
-            std::cout << "-" << tsdd_node.tag_ << "- ";
+            std::cout << "-no-tag- ";
             if (tsdd_node.is_negative()) std::cout << "-";
             // std::cout << "x" << tsdd_node.value/2 << std::endl;
             std::cout << "x" << tsdd_node.value/2 << " ~ " << tsdd_node.vtree_index << std::endl;
@@ -521,7 +501,7 @@ void Manager::print(const TsddNode& tsdd_node, int indent) const {
         return;
     }
     for (int i = 0; i < indent; ++i) std::cout << " ";
-    std::cout << "-" << tsdd_node.tag_ << "- Dec " << tsdd_node.vtree_index << ":" << std::endl;
+    std::cout << "-no-tag- Dec " << tsdd_node.vtree_index << ":" << std::endl;
     int counter = 1;
     indent++;
     for (const auto& e : tsdd_node.elements) {
@@ -554,7 +534,7 @@ void Manager::print_unique_table() const {
     }
 }
 
-addr_t Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_file) {
+Tsdd Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_file) {
     // read *.cnf
     std::ifstream infile(cnf_file, std::ios::in);
     std::string file_name = static_cast<std::string>(cnf_file);
@@ -591,17 +571,17 @@ addr_t Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_
     // v.save_vtree_file("s27_ balanced.vtree");
 
     // make tsdd literal by literal
-    addr_t fml = true_;
+    Tsdd fml = true_;
     int  clause_counter = 1;
-    std::vector<addr_t> clause_tsdds;
+    std::vector<Tsdd> clause_tsdds;
     for(int line = 0; line < col_no; ++line)  //read every line number, and save as a clause
     {
-        addr_t clause = false_;
+        Tsdd clause = false_;
         while (true) {
             int var;
             infile >> var;
             if (var == 0) break;
-            addr_t tmp_var = tsddVar(var);
+            Tsdd tmp_var = tsddVar(var);
             clause = apply(clause, tmp_var, OR);
         }
         fml = apply(fml, clause, AND);
@@ -610,7 +590,7 @@ addr_t Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_
     }
     return fml;
     while (clause_tsdds.size() > 1) {
-        std::vector<addr_t> tmp_tsdds;
+        std::vector<Tsdd> tmp_tsdds;
         for (int i = 0; i < (int)(clause_tsdds.size() + 1) / 2; i++) {
             if (2 * i + 1 >= (int)clause_tsdds.size()) {
                 tmp_tsdds.push_back(clause_tsdds[2*i]);
@@ -622,70 +602,6 @@ addr_t Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_
         clause_tsdds = tmp_tsdds;
     }
     return clause_tsdds[0];
-}
-
-std::unordered_set<addr_t> Manager::verilog_to_tsdds(char* cnf_file, const std::string vtree_file) {
-    logicNet *net = readVerilog(cnf_file);
-    std::string test_name(basename(cnf_file));
-    // std::cout << "readVerilog done;" << std::endl;
-
-    std::ifstream vtreefile(vtree_file, std::ios::in);
-    if (!vtreefile || vtree_file.empty()) {
-        std::vector<int> vars_order;
-        for (unsigned int i = 1; i <= net->Nin; ++i) vars_order.push_back(i);
-
-        // for random vtree
-        std::chrono::milliseconds ms = duration_cast< std::chrono::milliseconds >(
-            system_clock::now().time_since_epoch()
-        );
-        srand (unsigned (ms.count() ) );
-        random_shuffle(vars_order.begin(), vars_order.end(), myrandom);
-
-        vtree = new Vtree(1, net->Nin*2-1, vars_order, RANDOM_TREE);
-    } else {
-        vtree = new Vtree(vtree_file);
-    }
-
-    initial_node_table_and_zsdd_trues();
-    // std::cout << "readVerilog done;" << std::endl;
-
-    std::unordered_set<addr_t> ids;
-    // int  output_counter = 1;
-    for(unsigned int i = 0; i < net->Nout; ++i){
-        output_one_tsdd(&(net->output[i]));
-        addr_t node_id = (addr_t)((net->output[i]).func);
-        // std::cout << "output " << output_counter++ << " done, size: " << size(node_id) << std::endl;
-        ids.emplace(node_id);
-    }
-    // print_tsdd_nodes();
-    std::cout << test_name << "\t\t" << net->Nin << "\t" << net->Nout << "\t" << net->Nwire << "\t";
-    freeLogicNet(net);
-    return ids;
-}
-
-void Manager::output_one_tsdd(logicVar *var) {
-    // build TSDD literal
-    if(VARTYPE(var->info) == _INPUT_){
-        var->func = tsddVar(var->varIndex);
-        return;
-    }
-    // build TSDD formulae
-    unsigned int gateType = GATETYPE(var->info);
-    if(gateType == _XOR_ || gateType == _AND_ || gateType == _OR_){
-        output_one_tsdd(var->A);  output_one_tsdd(var->B);
-        addr_t funcA = (addr_t)(var->A->func);
-        addr_t funcB = (addr_t)(var->B->func);
-        if(gateType == _XOR_)       { var->func = apply(funcA, funcB, XOR); }
-        else if(gateType == _AND_)  { var->func = apply(funcA, funcB, AND); }
-        else                { var->func = apply(funcA, funcB, OR); }
-    }else{  // INV or BUF
-        output_one_tsdd(var->A);
-        addr_t funcA = (addr_t)(var->A->func);
-
-        if(gateType == _INV_)       { var->func = apply(funcA, 1, XOR); }  // ??
-        else                { var->func = funcA; }
-    }
-    return;
 }
 
 } // namespace tsdd
