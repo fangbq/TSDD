@@ -34,6 +34,8 @@ public:
     int father_of(int i) const;
     bool is_leaf(int i) const;  // return if node index is leaf
     int left_child(int i) const;
+    int leftmost_index(int i) const;
+    int leftmost_var(int i) const;
     int right_child(int i) const;
 	int get_lca(int a, int b);  // get the lowest common ancestor of two node
     void print(int indent = 0) const;

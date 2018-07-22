@@ -30,7 +30,7 @@ public:
     TsddNode() { elements.clear(); }
     TsddNode(const TsddNode& s) { value = s.value; elements = s.elements; vtree_index = s.vtree_index; }
     ~TsddNode() { value = -1; elements.clear(); vtree_index = 0; }
-    TsddNode(int v, int i = 0, int t = 0) { elements.clear(); value = v; vtree_index = i; }
+    TsddNode(int v, int i = 0) { elements.clear(); value = v; vtree_index = i; }
     TsddNode& operator=(const TsddNode& tsdd_node) {
         value = tsdd_node.value;
         elements = tsdd_node.elements;

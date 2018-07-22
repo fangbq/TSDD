@@ -161,13 +161,27 @@ bool Vtree::is_leaf(int i) const {
 }
 
 int Vtree::left_child(int i) const {
-    int lc = subvtree(i).lt->index;
-    return lc%2==1 ? 0 : lc;
+    return lc = subvtree(i).lt->index;
 }
 
 int Vtree::right_child(int i) const {
-    int rc = subvtree(i).rt->index;
-    return rc%2==1 ? 0 : rc;
+    return rc = subvtree(i).rt->index;
+}
+
+int Vtree::leftmost_index(int i) const {
+    Vtree* lm = subvtree(i).lt;
+    while (lm) {
+        lm = lm->lt;
+    }
+    return lm->index;
+}
+
+int Vtree::leftmost_var(int i) const {
+    Vtree* lm = subvtree(i).lt;
+    while (lm) {
+        lm = lm->lt;
+    }
+    return lm->var;
 }
 
 int Vtree::get_lca(int a, int b) {

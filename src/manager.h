@@ -24,9 +24,13 @@ public:
     Vtree* vtree = NULL;
     addr_t max_addr_for_lit_ = 0;
 
-    // for zsdd trues and complementary
-    std::unordered_map<int, addr_t> zsdd_trues_;
-    std::unordered_map<int, addr_t> zsdd_falses_;
+    // for sdd left and right trues
+    std::unordered_map<int, Tsdd> trues_;
+    std::unordered_map<int, Tsdd> left_trues_;
+    std::unordered_map<int, Tsdd> right_trues_;
+    // for zsdd epsilons and complementary
+    std::unordered_map<int, Tsdd> epsl_;
+    std::unordered_map<int, Tsdd> epsl_comp_;
 
     // get vtree node depth by index
     std::unordered_map<int, int> depths_by_index;
@@ -39,6 +43,7 @@ public:
 public:
     Manager();
     Manager(const Vtree& v, const unsigned int cache_size = 1U << 16);
+    void initial_constants();
     void initial_node_table_and_zsdd_trues();
     void initial_depths_by_index(Vtree* v);
     ~Manager();
