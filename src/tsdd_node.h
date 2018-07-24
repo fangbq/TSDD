@@ -12,6 +12,7 @@
 
 namespace tsdd {
 
+class Tsdd;
 class Manager;
 
 // using Element = std::pair<addr_t, addr_t>;

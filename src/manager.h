@@ -12,7 +12,7 @@
 #include "readVerilog.h"
 #include "cache_table.h"
 #include "unique_table.h"
-
+// #include "tsdd.h"
 
 namespace tsdd {
 
@@ -62,8 +62,8 @@ public:
     inline bool is_terminal(const addr_t addr_) const { return addr_>1 && addr_ <= max_addr_for_lit_; }
     // inline bool is_negative(const addr_t addr_) const { return (addr_ & 1) ==1; }
     // inline bool is_positive(const addr_t addr_) const { return (addr_ & 1) ==0; }
-    inline bool is_true(const Tsdd& tsdd) const { return tsdd.addr_!==0 && tsdd.addr_<vtree->size && (long long int)tsdd.tag_==tsdd.addr_; }
-    inline bool is_false(const Tsdd& tsdd) const { return tsdd.addr_==0; }
+    bool is_true(const Tsdd& tsdd) const;
+    bool is_false(const Tsdd& tsdd) const;
 
     Tsdd apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op);
 
@@ -74,7 +74,7 @@ public:
     void print_unique_table() const;
 
     // read cnf file
-    addr_t cnf_to_tsdd(const std::string cnf_file, const std::string vtree_file = "");
+    Tsdd cnf_to_tsdd(const std::string cnf_file, const std::string vtree_file = "");
     // std::unordered_set<addr_t> verilog_to_tsdds(char*, const std::string vtree_file = "");
     // void output_one_tsdd(logicVar *var);
 };
