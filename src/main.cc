@@ -22,7 +22,6 @@
 #include <algorithm>
 #include <assert.h>
 #include <chrono>
-#include "tsdd.h"
 #include <time.h>
 using namespace std;
 using namespace tsdd;
@@ -43,10 +42,7 @@ int main(int argc, char** argv) {
     // if (strstr(argv[1], "cnf")) input_cnf_file = true;
     // addr_t fml;
     // unordered_set<addr_t> fmls;
-    // if (input_cnf_file)
-    //     fml = manager.cnf_to_tsdd(argv[1], vtree_file);  // for CNF file
-    // else
-    //     fmls = manager.verilog_to_tsdds(argv[1], vtree_file);  // for Verilog file
+    // fml = manager.cnf_to_tsdd(argv[1], vtree_file);  // for CNF file
     // clock_t finish = clock();
     // double ptime = (double)(finish - start) / CLOCKS_PER_SEC;  // runtime
     // cout.setf(ios::showpoint);

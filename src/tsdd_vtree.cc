@@ -161,11 +161,11 @@ bool Vtree::is_leaf(int i) const {
 }
 
 int Vtree::left_child(int i) const {
-    return lc = subvtree(i).lt->index;
+    return subvtree(i).lt->index;
 }
 
 int Vtree::right_child(int i) const {
-    return rc = subvtree(i).rt->index;
+    return subvtree(i).rt->index;
 }
 
 int Vtree::leftmost_index(int i) const {

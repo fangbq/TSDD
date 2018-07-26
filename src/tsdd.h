@@ -1,3 +1,4 @@
+/*
 #ifndef TSDD_H
 #define TSDD_H
 
@@ -24,26 +25,16 @@ public:
     }
 
     bool operator==(const Tsdd& tsdd) const {
-    // std::cout << "equals..." << std::endl;
         return tag_==tsdd.tag_ && addr_==tsdd.addr_;
     }
 
     bool operator<(const Tsdd& tsdd) const {
-    // std::cout << "equals..." << std::endl;
         if (tag_ < tsdd.tag_) return true;
         else if (tag_ == tsdd.tag_) return addr_<tsdd.addr_;
         else return false;
     }
 
     addr_t addr() const { return addr_; }
-    // unsigned long long int size() const {
-    //     return m.size(addr_);
-    // }
-    // void print() const {
-    //     m.print(addr_);
-    // }
-    // void print_dot(fstream & out_dot, const Manager& m, bool root = false, int depth = 0, string dec_name = "Dec_0_1") const;
-    // void save_file_as_dot(const string f_name, const Manager& m) const;
 };
 
 } // namespace tsdd
@@ -60,3 +51,4 @@ template <> struct hash<tsdd::Tsdd> {
 }
 
 #endif
+*/

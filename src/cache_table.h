@@ -10,14 +10,14 @@
 namespace tsdd {
 
 class CacheTable {
-	using cache_entry = std::tuple<OPERATOR_TYPE, addr_t, addr_t, addr_t>;
+	using cache_entry = std::tuple<OPERATOR_TYPE, Tsdd, Tsdd, Tsdd>;
 public:
 
     CacheTable() : cache_table_(INIT_SIZE) {}
     CacheTable(const int init_size) : cache_table_(init_size) {}    
 
-	void write_cache(const OPERATOR_TYPE op, const addr_t lhs,
-	                 const addr_t rhs, const addr_t res) {
+	void write_cache(const OPERATOR_TYPE op, const Tsdd& lhs,
+	                 const Tsdd& rhs, const Tsdd& res) {
 	    auto key = calc_key(op, lhs, rhs);
 	    cache_table_[key] = std::make_tuple(op, lhs, rhs, res);
 	}
@@ -28,7 +28,7 @@ public:
 	    }
 	}
 
-	addr_t read_cache(const OPERATOR_TYPE op, const addr_t lhs, const addr_t rhs) {
+	Tsdd& read_cache(const OPERATOR_TYPE op, const Tsdd& lhs, const Tsdd& rhs) {
 	    auto key = calc_key(op, lhs, rhs);
 	    auto res = cache_table_[key];
 
@@ -40,21 +40,21 @@ public:
 	    return TSDD_NULL;
 	}
 
-	size_t calc_key(const OPERATOR_TYPE op, const addr_t lhs,  const addr_t rhs) {
+	size_t calc_key(const OPERATOR_TYPE op, const Tsdd& lhs,  const Tsdd& rhs) {
 	    size_t key = 0;
 	    hash_combine(key, std::hash<int>()(static_cast<int>(op)));
-	    hash_combine(key, std::hash<size_t>()(lhs));
-	    hash_combine(key, std::hash<size_t>()(rhs));
+	    hash_combine(key, std::hash<tsdd::Tsdd>()(lhs));
+	    hash_combine(key, std::hash<tsdd::Tsdd>()(rhs));
 	    // std::cout << "cache table size: " << cache_table_.size() << std::endl;
 	    return key % cache_table_.size();
 	}
 
-	void print_cache_table() const {
-	    std::cout << "cache_table:-------------------------------" << std::endl;
-	    for (auto& x: cache_table_) {
-	        std::cout << std::get<0>(x) << std::get<1>(x) << std::get<2>(x) << std::get<3>(x) << std::endl;
-	    }
-	}
+	// void print_cache_table() const {
+	//     std::cout << "cache_table:-------------------------------" << std::endl;
+	//     for (auto& x: cache_table_) {
+	//         std::cout << std::get<0>(x) << std::get<1>(x) << std::get<2>(x) << std::get<3>(x) << std::endl;
+	//     }
+	// }
 public:
     const unsigned int INIT_SIZE = 1U<<10;
     std::vector<cache_entry> cache_table_;

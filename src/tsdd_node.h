@@ -4,7 +4,6 @@
 #include <vector>
 #include <iostream>
 #include "define.h"
-#include "tsdd.h"
 #include "tsdd_vtree.h"
 #include <unordered_set>
 #include <type_traits>
@@ -12,11 +11,37 @@
 
 namespace tsdd {
 
-class Tsdd;
 class Manager;
 
-// using Element = std::pair<addr_t, addr_t>;
-using Element = std::pair<Tsdd, Tsdd>;  // tag 1, prime, tag 2, sub
+class Tsdd {
+public:
+    int tag_ = 0;
+    addr_t addr_ = -1;
+    // Manager& m;
+public:
+    Tsdd() {}
+    Tsdd(const int tag, const addr_t addr) : tag_(tag), addr_(addr) {}
+    Tsdd(const Tsdd& tsdd) : tag_(tsdd.tag_), addr_(tsdd.addr_) {}
+    Tsdd& operator=(const Tsdd& tsdd) {
+        addr_ = tsdd.addr_;
+        tag_ = tsdd.tag_;
+        return *this;
+    }
+
+    bool operator==(const Tsdd& tsdd) const {
+        return tag_==tsdd.tag_ && addr_==tsdd.addr_;
+    }
+
+    bool operator<(const Tsdd& tsdd) const {
+        if (tag_ < tsdd.tag_) return true;
+        else if (tag_ == tsdd.tag_) return addr_<tsdd.addr_;
+        else return false;
+    }
+
+    addr_t addr() const { return addr_; }
+};
+
+using Element = std::pair<tsdd::Tsdd, tsdd::Tsdd>;  // tag 1, prime, tag 2, sub
 
 class TsddNode {
 public:
@@ -64,8 +89,8 @@ template <> struct hash<tsdd::TsddNode> {
             return h;
         } else if (n.value < 0) {
             for (const auto& e : n.elements) {
-                tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.first));
-                tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.second));
+                // tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.first.tag_));
+                // tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.second));
             }
             tsdd::hash_combine(h, hash<int>()(n.vtree_index));
         }

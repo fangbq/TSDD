@@ -26,7 +26,7 @@ dep:
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $<
 
 
-tsdd : main.o manager.o tsdd_vtree.o tsdd_node.o readVerilog.o
+tsdd : main.o manager.o tsdd_vtree.o tsdd_node.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS)  $^ -o $@
 
 -include makefile.depend

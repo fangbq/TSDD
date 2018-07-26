@@ -9,20 +9,17 @@
 #include <stack>
 #include <functional>
 #include <map>
-#include "readVerilog.h"
 #include "cache_table.h"
 #include "unique_table.h"
 // #include "tsdd.h"
 
 namespace tsdd {
 
-class Tsdd;
-
 class Manager {
 public:
     Tsdd false_ = *new Tsdd(0, 0);  // false_(0, 0); this initialization ok?!!!
     Vtree* vtree = NULL;
-    addr_t max_addr_for_lit_ = 0;
+    int var_no_ = 0;
 
     // for sdd left and right trues
     std::unordered_map<int, Tsdd> trues_;
@@ -59,11 +56,10 @@ public:
     // addr_t generate_bigoplus_piterms(const Vtree& v);
 
     // inline addr_t get_compl_tmn(const addr_t addr_) const { return addr_^1; }
-    inline bool is_terminal(const addr_t addr_) const { return addr_>1 && addr_ <= max_addr_for_lit_; }
-    // inline bool is_negative(const addr_t addr_) const { return (addr_ & 1) ==1; }
-    // inline bool is_positive(const addr_t addr_) const { return (addr_ & 1) ==0; }
-    bool is_true(const Tsdd& tsdd) const;
-    bool is_false(const Tsdd& tsdd) const;
+    inline bool is_terminal(const Tsdd& tsdd) const { return is_constant(tsdd)||(vtree->size<tsdd.addr_&&tsdd.addr_<2*(vtree->size))+1; }
+    inline bool is_constant(const Tsdd& tsdd) const { return is_true(tsdd)||is_false(tsdd); }
+    inline bool is_true(const Tsdd& tsdd) const { return tsdd.addr_!==0 && tsdd.addr_<vtree->size && (long long int)tsdd.tag_==tsdd.addr_; }
+    inline bool is_false(const Tsdd& tsdd) const { return tsdd==false_; }
 
     Tsdd apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op);
 
@@ -75,8 +71,6 @@ public:
 
     // read cnf file
     Tsdd cnf_to_tsdd(const std::string cnf_file, const std::string vtree_file = "");
-    // std::unordered_set<addr_t> verilog_to_tsdds(char*, const std::string vtree_file = "");
-    // void output_one_tsdd(logicVar *var);
 };
 
 } // namespace tsdd

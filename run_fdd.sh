@@ -26,8 +26,8 @@ echo -e "Benchmarks\tInputs\tOutputs\tWires\tNode Count\tRuntime (s)"
 
 test_cases_file="./benchmarks/test_cases_random_vtree"
 program="./src/tsdd"
-cat $test_cases_file | while read verilog_and_vtree_
+cat $test_cases_file | while read cnf_and_vtree_
 do
-    timeout 1800 "$program $verilog_and_vtree_"
+    timeout 1800 "$program $cnf_and_vtree_"
 done
 exit 0
