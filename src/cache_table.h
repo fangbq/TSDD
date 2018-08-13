@@ -23,9 +23,9 @@ public:
 	}
 
 	void clear_cache() {
-	    for (auto it =  cache_table_.begin(); it != cache_table_.end(); ++it) {
-	        *it = std::make_tuple(OPERATOR_TYPE::NULLOP, -1, -1, -1);
-	    }
+	    // for (auto it =  cache_table_.begin(); it != cache_table_.end(); ++it) {
+	    //     *it = std::make_tuple(OPERATOR_TYPE::NULLOP, -1, -1, -1);
+	    // }
 	}
 
 	Tsdd& read_cache(const OPERATOR_TYPE op, const Tsdd& lhs, const Tsdd& rhs) {
@@ -37,7 +37,7 @@ public:
 	        std::get<2>(res) == rhs) {
 	        return std::get<3>(res);
 	    }
-	    return TSDD_NULL;
+	    return (*new Tsdd(-1, -1));
 	}
 
 	size_t calc_key(const OPERATOR_TYPE op, const Tsdd& lhs,  const Tsdd& rhs) {

@@ -17,7 +17,8 @@ namespace tsdd {
 
 class Manager {
 public:
-    Tsdd false_ = *new Tsdd(0, 0);  // false_(0, 0); this initialization ok?!!!
+    Tsdd empty_ = *new Tsdd(-1, -1);  // false_(0, 0); this kind of initialization ok?!!!
+    Tsdd false_ = *new Tsdd(0, 0);  // false_(0, 0); this kind of initialization ok?!!!
     Vtree* vtree = NULL;
     int var_no_ = 0;
 
@@ -44,7 +45,7 @@ public:
     void initial_node_table_and_zsdd_trues();
     void initial_depths_by_index(Vtree* v);
     ~Manager();
-    addr_t tsddVar(const int var);
+    Tsdd tsddVar(const int var);
 
     // size of tsdd
     unsigned long long size(const Tsdd& tsdd) const;
@@ -58,7 +59,7 @@ public:
     // inline addr_t get_compl_tmn(const addr_t addr_) const { return addr_^1; }
     inline bool is_terminal(const Tsdd& tsdd) const { return is_constant(tsdd)||(vtree->size<tsdd.addr_&&tsdd.addr_<2*(vtree->size))+1; }
     inline bool is_constant(const Tsdd& tsdd) const { return is_true(tsdd)||is_false(tsdd); }
-    inline bool is_true(const Tsdd& tsdd) const { return tsdd.addr_!==0 && tsdd.addr_<vtree->size && (long long int)tsdd.tag_==tsdd.addr_; }
+    inline bool is_true(const Tsdd& tsdd) const { return tsdd.addr_>0 && tsdd.addr_<vtree->size && (long long int)tsdd.tag_==tsdd.addr_; }
     inline bool is_false(const Tsdd& tsdd) const { return tsdd==false_; }
 
     Tsdd apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op);

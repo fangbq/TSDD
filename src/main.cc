@@ -23,32 +23,32 @@
 #include <assert.h>
 #include <chrono>
 #include <time.h>
+#include "manager.h"
+
 using namespace std;
 using namespace tsdd;
-
 
 std::map<int, int> get_index_by_var = {{0,0}};  // x1 stored as "1", x4 stored as "4"...
                                            // indexs of true and false both are "0"
 
 
 int main(int argc, char** argv) {
-
-    // Manager manager;
-    // // cout << "Benchmarks\tInputs\tOutputs\tWires\tNode Count\tRuntime (s)" << endl;  // table header
-    // clock_t start = clock();
-    // string vtree_file = "";
-    // bool input_cnf_file = false;
-    // if (argv[2]) vtree_file = argv[2];
-    // if (strstr(argv[1], "cnf")) input_cnf_file = true;
-    // addr_t fml;
-    // unordered_set<addr_t> fmls;
-    // fml = manager.cnf_to_tsdd(argv[1], vtree_file);  // for CNF file
-    // clock_t finish = clock();
-    // double ptime = (double)(finish - start) / CLOCKS_PER_SEC;  // runtime
-    // cout.setf(ios::showpoint);
-    // cout.precision(4);
-    // cout.setf(ios::fixed);
-    // cout << (input_cnf_file ? manager.size(fml) : manager.size(fmls)) << "\t\t" << ptime << endl;
+    if (argc) std::cout << "";
+    Manager manager;
+    // cout << "Benchmarks\tInputs\tOutputs\tWires\tNode Count\tRuntime (s)" << endl;  // table header
+    clock_t start = clock();
+    string vtree_file = "";
+    bool input_cnf_file = false;
+    if (argv[2]) vtree_file = argv[2];
+    if (strstr(argv[1], "cnf")) input_cnf_file = true;
+    Tsdd fml;
+    fml = manager.cnf_to_tsdd(argv[1], vtree_file);  // for CNF file
+    clock_t finish = clock();
+    double ptime = (double)(finish - start) / CLOCKS_PER_SEC;  // runtime
+    cout.setf(ios::showpoint);
+    cout.precision(4);
+    cout.setf(ios::fixed);
+    cout << manager.size(fml) << "\t\t" << ptime << endl;
 
     return 0;
 }

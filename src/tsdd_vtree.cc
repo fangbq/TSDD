@@ -169,16 +169,18 @@ int Vtree::right_child(int i) const {
 }
 
 int Vtree::leftmost_index(int i) const {
-    Vtree* lm = subvtree(i).lt;
-    while (lm) {
+    Vtree lmv = subvtree(i);
+    Vtree* lm = lmv.lt;
+    while (lm->lt) {
         lm = lm->lt;
     }
     return lm->index;
 }
 
 int Vtree::leftmost_var(int i) const {
-    Vtree* lm = subvtree(i).lt;
-    while (lm) {
+    Vtree lmv = subvtree(i);
+    Vtree* lm = lmv.lt;
+    while (lm->lt) {
         lm = lm->lt;
     }
     return lm->var;

@@ -11,8 +11,6 @@
 
 namespace tsdd {
 
-class Manager;
-
 class Tsdd {
 public:
     int tag_ = 0;
@@ -30,6 +28,10 @@ public:
 
     bool operator==(const Tsdd& tsdd) const {
         return tag_==tsdd.tag_ && addr_==tsdd.addr_;
+    }
+
+    bool operator!=(const Tsdd& tsdd) const {
+        return !(*this==tsdd);
     }
 
     bool operator<(const Tsdd& tsdd) const {
@@ -80,6 +82,15 @@ namespace std {
 
 // class Tsdd;
 
+template <> struct hash<tsdd::Tsdd> {
+    std::size_t operator()(const tsdd::Tsdd& t) const {
+        size_t h = 0;
+        tsdd::hash_combine(h, hash<int>()(t.tag_));
+        tsdd::hash_combine(h, hash<tsdd::addr_t>()(t.addr_));
+        return h;
+    }
+};
+
 template <> struct hash<tsdd::TsddNode> {
     std::size_t operator()(const tsdd::TsddNode& n) const {
         size_t h = 0;
@@ -89,8 +100,8 @@ template <> struct hash<tsdd::TsddNode> {
             return h;
         } else if (n.value < 0) {
             for (const auto& e : n.elements) {
-                // tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.first.tag_));
-                // tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.second));
+                tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.first));
+                tsdd::hash_combine(h, hash<tsdd::Tsdd>()(e.second));
             }
             tsdd::hash_combine(h, hash<int>()(n.vtree_index));
         }

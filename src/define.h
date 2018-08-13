@@ -25,9 +25,9 @@ enum VTREE_TYPE {
 
 using addr_t = long long int;
 
-constexpr addr_t TSDD_FALSE = -2;
-constexpr addr_t TSDD_EMPTY = -1;
-constexpr addr_t TSDD_NULL = -3;
+// constexpr addr_t TSDD_FALSE = -2;
+// constexpr addr_t TSDD_EMPTY = -1;
+// constexpr addr_t TSDD_NULL = -3;
 
 inline void hash_combine(size_t& seed, size_t value) {
     seed ^= value + 0x9e3779b9 + (seed<<6) + (seed>>2);
