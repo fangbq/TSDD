@@ -169,6 +169,7 @@ int Vtree::right_child(int i) const {
 }
 
 int Vtree::leftmost_index(int i) const {
+    if (is_leaf(i)) return i;
     Vtree lmv = subvtree(i);
     Vtree* lm = lmv.lt;
     while (lm->lt) {
@@ -179,6 +180,7 @@ int Vtree::leftmost_index(int i) const {
 
 int Vtree::leftmost_var(int i) const {
     Vtree lmv = subvtree(i);
+    if (is_leaf(i)) return lmv.var;
     Vtree* lm = lmv.lt;
     while (lm->lt) {
         lm = lm->lt;
@@ -208,30 +210,30 @@ void Vtree::print(int indent) const {
     return;
 }
 
-// void Vtree::print_dot(fstream& out_dot, bool root) const {
-//     if (root) out_dot << "graph {" << endl;
-//     out_dot << "\ti" << index;
-//     if (var) out_dot << "x"+to_string(var);
-//     out_dot << " [shape=none, label=\"" << index;
-//     if (var) out_dot << "_x"<< var;
-//     out_dot << "\"]" << endl;
-//     if (lt) {
-//         out_dot << "\ti" << index << " -- i";
-//         out_dot << lt->index;
-//         if (lt->var) out_dot << "x"+to_string(lt->var);
-//         out_dot << endl;
-//         lt->print_dot(out_dot, false);
-//     }
-//     if (rt) {
-//         out_dot << "\ti" << index << " -- i";
-//         out_dot <<  rt->index;
-//         if (rt->var) out_dot << "x"+to_string(rt->var);
-//         out_dot << endl;
-//         rt->print_dot(out_dot, false);
-//     }
-//     if (root) out_dot << "}" << endl;
-//     return;
-// }
+void Vtree::print_dot(std::fstream& out_dot, bool root) const {
+    if (root) out_dot << "graph {" << std::endl;
+    out_dot << "\ti" << index;
+    if (var) out_dot << "x"+std::to_string(var);
+    out_dot << " [shape=none, label=\"" << index;
+    if (var) out_dot << "_x"<< var;
+    out_dot << "\"]" << std::endl;
+    if (lt) {
+        out_dot << "\ti" << index << " -- i";
+        out_dot << lt->index;
+        if (lt->var) out_dot << "x"+std::to_string(lt->var);
+        out_dot << std::endl;
+        lt->print_dot(out_dot, false);
+    }
+    if (rt) {
+        out_dot << "\ti" << index << " -- i";
+        out_dot <<  rt->index;
+        if (rt->var) out_dot << "x"+std::to_string(rt->var);
+        out_dot << std::endl;
+        rt->print_dot(out_dot, false);
+    }
+    if (root) out_dot << "}" << std::endl;
+    return;
+}
 
 void Vtree::print_vtree(std::fstream& out_dot, bool root) const {
     if (root) out_dot << "vtree " << size << std::endl;
@@ -241,12 +243,12 @@ void Vtree::print_vtree(std::fstream& out_dot, bool root) const {
     else out_dot << "I " << index-1 << " " << lt->index-1 << " " << rt->index-1 << std::endl;
 }
 
-// void Vtree::save_dot_file(const std::string f_name) const {
-//     fstream f;
-//     f.open(f_name, fstream::out | fstream::trunc);
-//     print_dot(f, true);
-//     f.close();
-// }
+void Vtree::save_dot_file(const std::string f_name) const {
+    std::fstream f;
+    f.open(f_name, std::fstream::out | std::fstream::trunc);
+    print_dot(f, true);
+    f.close();
+}
 
 void Vtree::save_vtree_file(const std::string f_name) const {
     std::fstream f;

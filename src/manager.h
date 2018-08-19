@@ -57,7 +57,7 @@ public:
     // addr_t generate_bigoplus_piterms(const Vtree& v);
 
     // inline addr_t get_compl_tmn(const addr_t addr_) const { return addr_^1; }
-    inline bool is_terminal(const Tsdd& tsdd) const { return is_constant(tsdd)||(vtree->size<tsdd.addr_&&tsdd.addr_<2*(vtree->size))+1; }
+    inline bool is_terminal(const Tsdd& tsdd) const { return is_constant(tsdd)||tsdd.tag_%2==1; }
     inline bool is_constant(const Tsdd& tsdd) const { return is_true(tsdd)||is_false(tsdd); }
     inline bool is_true(const Tsdd& tsdd) const { return tsdd.addr_>0 && tsdd.addr_<vtree->size && (long long int)tsdd.tag_==tsdd.addr_; }
     inline bool is_false(const Tsdd& tsdd) const { return tsdd==false_; }

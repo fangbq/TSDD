@@ -11,11 +11,11 @@
 namespace tsdd {
 
 enum OPERATOR_TYPE {
-	NULLOP,
-	INTER,
-    XOR,
-    AND,
-    OR
+	NULLOP,  // 0
+	INTER,  // 1
+    XOR,  // 2
+    AND,  // 3
+    OR  // 4
 };
 
 enum VTREE_TYPE {

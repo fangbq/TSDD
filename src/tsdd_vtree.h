@@ -39,8 +39,8 @@ public:
     int right_child(int i) const;
 	int get_lca(int a, int b);  // get the lowest common ancestor of two node
     void print(int indent = 0) const;
-    // void print_dot(fstream& out_dot, bool root = false) const;
-    // void save_dot_file(const std::string f_name) const;
+    void print_dot(std::fstream& out_dot, bool root = false) const;
+    void save_dot_file(const std::string f_name) const;
     void print_vtree(std::fstream& out_dot, bool root = false) const;
     void save_vtree_file(const std::string f_name) const;
 };
