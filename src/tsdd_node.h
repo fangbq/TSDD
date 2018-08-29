@@ -9,6 +9,8 @@
 #include <type_traits>
 #include <functional>
 
+extern int VTREE_SIZE;
+
 namespace tsdd {
 
 class Tsdd {
@@ -26,7 +28,11 @@ public:
         return *this;
     }
 
+    inline bool is_true() const { return addr_>0 && addr_<=VTREE_SIZE && (long long int)tag_==addr_; }
+
     bool operator==(const Tsdd& tsdd) const {
+        // for same_sub, different sytax trues done in manager
+        if (is_true() && tsdd.is_true()) return true;
         return tag_==tsdd.tag_ && addr_==tsdd.addr_;
     }
 
@@ -85,6 +91,12 @@ namespace std {
 template <> struct hash<tsdd::Tsdd> {
     std::size_t operator()(const tsdd::Tsdd& t) const {
         size_t h = 0;
+        if (t.is_true()) {
+            // std::cout << "hhhhh" << std::endl;
+            tsdd::hash_combine(h, hash<int>()(-1));
+            tsdd::hash_combine(h, hash<tsdd::addr_t>()(-1));
+            return h;
+        }
         tsdd::hash_combine(h, hash<int>()(t.tag_));
         tsdd::hash_combine(h, hash<tsdd::addr_t>()(t.addr_));
         return h;

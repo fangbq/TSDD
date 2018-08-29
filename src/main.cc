@@ -30,7 +30,7 @@ using namespace tsdd;
 
 std::map<int, int> get_index_by_var = {{0,0}};  // x1 stored as "1", x4 stored as "4"...
                                            // indexs of true and false both are "0"
-
+int VTREE_SIZE = 0;
 
 int main(int argc, char** argv) {
     if (argc) std::cout << "";

@@ -30,10 +30,10 @@ Manager::Manager(const Vtree& v, const unsigned int cache_size) :
 
 void Manager::initial_constants() {
     TsddNode false_node(0);
-    uniq_table_.make_tsdd(false_node);
+    uniq_table_.make_or_find(false_node);
     for (int i = 1; i <= vtree->size; ++i) {
         TsddNode true_node(1, i);
-        uniq_table_.make_tsdd(true_node);
+        uniq_table_.make_or_find(true_node);
         Tsdd true_(i, i);
         trues_.emplace(i, true_);
         if (vtree->is_leaf(i)) continue;
@@ -48,8 +48,8 @@ void Manager::initial_node_table_and_zsdd_trues() {
     // here: 1*2 - x_1, 1*2+1 - -x_1, ..., 
     for (int i = 1; i <= (vtree->size+1)/2; ++i) {
         TsddNode pos_literal(i*2, get_index_by_var[abs(i)]), neg_literal(i*2+1, get_index_by_var[abs(i)]);
-        uniq_table_.make_tsdd(pos_literal);
-        addr_t neg = uniq_table_.make_tsdd(neg_literal);
+        uniq_table_.make_or_find(pos_literal);
+        addr_t neg = uniq_table_.make_or_find(neg_literal);
         // add leaf epsl_ (map below)
         Tsdd epsl(get_index_by_var[i], neg);
         epsl_.emplace(get_index_by_var[i], epsl);  // 'i' here is variable, not vnode
@@ -63,14 +63,15 @@ void Manager::initial_node_table_and_zsdd_trues() {
     /// inital this before apply operation (do apply soon below)
     initial_depths_by_index(vtree);
 
-// vtree->print();
+vtree->print();
 // vtree->save_dot_file("tree18.dot");
+// vtree->save_vtree_file("tree18.vtree");
     // create a map for vtree_node and zsdd epsilon(cpmps)
     for (int i = 1; i <= (vtree->size); ++i) {
         if (vtree->is_leaf(i)) continue;  // leaf'left child added in the above loop
         int vtree_i = vtree->leftmost_index(i);
         TsddNode epsl_node((vtree->leftmost_var(i)*2+1), vtree_i);
-        addr_t epsl = uniq_table_.make_tsdd(epsl_node);
+        addr_t epsl = uniq_table_.make_or_find(epsl_node);
         Tsdd epsl_tsdd(i, epsl);
         epsl_.emplace(i, epsl_tsdd);
     }
@@ -83,8 +84,8 @@ void Manager::initial_node_table_and_zsdd_trues() {
 //     std::cout << a.first << " @@@@ " << std::endl;
 //     print(a.second);
 // }
-// std::cout << " @@@@@@@@@@@@@@@@@@@@@@@@@@@@ " << std::endl;
-
+std::cout << " init done @@@@@@@@@@@@@@@@@@@@@@@@@@@@ " << std::endl;
+// print_unique_table();
     // initial lca_table_
     std::vector<int> v;
     lca_table_.push_back(v);
@@ -182,6 +183,7 @@ Tsdd Manager::reduced(const TsddNode& tsdd_node) {
         // Trimming: one element, SDD Rule 2, {(1, a)} -> a
         return first_sub;
     }
+// print_unique_table();
 
     // 2 compressing
     result_node = tsdd_node;
@@ -190,8 +192,13 @@ Tsdd Manager::reduced(const TsddNode& tsdd_node) {
         bool is_delete = false;
         for (auto e2 = result_node.elements.begin(); \
         e2 != result_node.elements.end(); ++e2) {
-            // cout << "big equal..." << endl;
-            if (e1 != e2 && e1->second==e2->second) {
+// std::cout << "_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+_+" << std::endl;
+// std::cout << e1->second.tag_ << " " << e1->second.addr_ << " " << e2->second.tag_ << " " << e2->second.addr_ << std::endl;
+// print(e1->second);
+// print(e1->second);
+// std::cout << (e1 != e2) << " " << (e1->second==e2->second) << std::endl;
+            if (e1 != e2 && ((is_true(e1->second) && is_true(e2->second)) || e1->second==e2->second)) {
+// std::cout << "they are equal" << std::endl;
                 is_delete = true;
                 e2->first = apply(e1->first, e2->first, OR);
                 e1 = result_node.elements.erase(e1);
@@ -204,6 +211,10 @@ Tsdd Manager::reduced(const TsddNode& tsdd_node) {
 
     //3 Trimming
 // std::cout << "trimming..." << std::endl;
+// print(result_node);
+
+    result_tsdd.tag_ = result_node.vtree_index;
+
     if (result_node.elements.size() == 2) {
         if (!is_false(result_node.elements[0].second)) {
             // swap first
@@ -213,7 +224,9 @@ Tsdd Manager::reduced(const TsddNode& tsdd_node) {
         }
 
         if (is_false(result_node.elements[0].second)) {
-            // SDD Rule 1: {(a, 1), (¬a, 0)} -> a
+            // SDD Rule 1: {(¬a, 0), (a, 1)} -> a
+// std::cout<<"reduced 1 ---------------------------------- " << is_true(result_node.elements[1].second) << std::endl;
+// print(result_node);
             if (is_true(result_node.elements[1].second)) {
                 return result_node.elements[1].first;
             }
@@ -221,27 +234,31 @@ Tsdd Manager::reduced(const TsddNode& tsdd_node) {
             // int tmp_sub_tag = result_node.elements[1].second.tag_;
             TsddNode tmp_pri_ = uniq_table_.tsdd_nodes_.at(result_node.elements[1].first.addr_);
             TsddNode tmp_sub_ = uniq_table_.tsdd_nodes_.at(result_node.elements[1].second.addr_);
+// std::cout<<"reduced 2 --------------------------------------------" << std::endl;
 
-            result_tsdd.tag_ = result_node.vtree_index;
 
-            if (result_node.elements[1].second == epsl_.at(vtree->left_child(result_tsdd.tag_))) {
+            if (result_node.elements[1].first == epsl_.at(vtree->left_child(result_tsdd.tag_))) {
                 if (tmp_pri_tag == vtree->left_child(result_tsdd.tag_)) {
-                    // ZSDD Rule 2a: {(𝜀, a), (¬𝜀, 0)} -> a, t=v^l
+// std::cout<<"reduced 2.1 --------------------------------------------" << std::endl;
+                    // ZSDD Rule 2a: {(¬𝜀, 0), (𝜀, a)} -> a, t=v^l
                     result_tsdd = result_node.elements[1].second;
+                    result_tsdd.tag_ = result_node.vtree_index;
                     return result_tsdd;
                 } else {
-                    // ZSDD Rule 2b: {(𝜀, a), (¬𝜀, 0)} -> a, t≠v^l
+                    // ZSDD Rule 2b: {(¬𝜀, 0), (𝜀, a)} -> a, t≠v^l
                     result_node.vtree_index = vtree->right_child(result_tsdd.tag_);
                     result_node.elements[1].first = left_trues_.at(result_tsdd.tag_);
                     result_node.elements.erase(result_node.elements.begin());
                 }
             } else if (result_node.elements[1].second == epsl_.at(vtree->right_child(result_tsdd.tag_))) {
+// std::cout<<"reduced 3 --------------------------------------------" << std::endl;
                 if (tmp_pri_tag == vtree->left_child(result_tsdd.tag_)) {
-                    // ZSDD Rule 1a: {(a, 𝜀), (¬a, 0)} -> a, t=v^l
+                    // ZSDD Rule 1a: {(¬a, 0), (a, 𝜀)} -> a, t=v^l
                     result_tsdd = result_node.elements[1].first;
+                    result_tsdd.tag_ = result_node.vtree_index;
                     return result_tsdd;
                 } else {
-                    // ZSDD Rule 1b: {(a, 𝜀), (¬a, 0)} -> a, t≠v^l
+                    // ZSDD Rule 1b: {(¬a, 0), (a, 𝜀)} -> a, t≠v^l
                     result_node.vtree_index = vtree->left_child(result_tsdd.tag_);
                     result_node.elements[1].second = right_trues_.at(result_tsdd.tag_);
                 }
@@ -298,8 +315,7 @@ TsddNode Manager::cofactors(const Tsdd& tsdd, int lca) {
     } else if (tsdd_node.is_one()) {
 // std::cout<<"cofactors 1.2 --------------------------------------------" << std::endl;
         Element e1;
-        e1.first = left_trues_.at(lca);
-        e1.first.tag_ = vtree->left_child(lca);
+        e1.first = epsl_.at(vtree->left_child(lca));
         e1.second = epsl_.at(vtree->right_child(lca));
         new_node.elements.push_back(e1);
         if (is_true(e1.first)) return new_node;
@@ -375,10 +391,10 @@ TsddNode Manager::cofactors(const Tsdd& tsdd, int lca) {
     return new_node;
 }
 
-Tsdd Manager::apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op) {
+Tsdd Manager::apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op, int indent) {
 // cout << "apply..." << endl;
     if (rhs_tsdd < lhs_tsdd) {
-        return apply(rhs_tsdd, lhs_tsdd, op);
+        return apply(rhs_tsdd, lhs_tsdd, op, indent);
     }
 
     int lhs_tag = lhs_tsdd.tag_;
@@ -386,10 +402,6 @@ Tsdd Manager::apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op
     addr_t lhs = lhs_tsdd.addr_;
     addr_t rhs = rhs_tsdd.addr_;
 
-// std::cout<<"apply ========================================== " << op << std::endl;
-// print(lhs_tsdd);
-// std::cout<<"apply with --------------------------------------------" << std::endl;
-// print(rhs_tsdd);
 
     // trivial(constant) case
     switch (op) {
@@ -398,19 +410,19 @@ Tsdd Manager::apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op
             if (is_false(rhs_tsdd)) return rhs_tsdd;
             if (is_true(lhs_tsdd)) return rhs_tsdd;
             if (is_true(rhs_tsdd)) return lhs_tsdd;
-            if (lhs == rhs) return lhs_tsdd;
+            if (lhs_tsdd == rhs_tsdd) return lhs_tsdd;
             break;
         case OR:
             if (is_false(lhs_tsdd)) return rhs_tsdd;
             if (is_false(rhs_tsdd)) return lhs_tsdd;
             if (is_true(lhs_tsdd)) return lhs_tsdd;
             if (is_true(rhs_tsdd)) return rhs_tsdd;
-            if (lhs == rhs) return lhs_tsdd;
+            if (lhs_tsdd == rhs_tsdd) return lhs_tsdd;
             break;
         case XOR:
             if (is_false(lhs_tsdd)) return rhs_tsdd;
             if (is_false(rhs_tsdd)) return lhs_tsdd;
-            if (lhs == rhs) return false_;
+            if (lhs_tsdd == rhs_tsdd) return false_;
             break;
         default:
             std::cerr << "[MyError] apply error 1" << std::endl;
@@ -420,6 +432,13 @@ Tsdd Manager::apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op
     Tsdd cache = cache_table_.read_cache(op, lhs_tsdd, rhs_tsdd);
     if (cache != empty_)
         return cache;
+
+for (int i = 0; i < indent; ++i) std::cout << " ";
+std::cout<<"apply ========================================== " << op << std::endl;
+print(lhs_tsdd, indent);
+for (int i = 0; i < indent; ++i) std::cout << " ";
+std::cout<<"apply with --------------------------------------------" << std::endl;
+print(rhs_tsdd, indent);
 
     TsddNode new_node;
     TsddNode normalized_node1 = uniq_table_.tsdd_nodes_[lhs], normalized_node2 = uniq_table_.tsdd_nodes_[rhs];
@@ -431,14 +450,17 @@ Tsdd Manager::apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op
         lca = min_tag;
 // std::cout<<"lca: " << lca << std::endl;
     
-    if (normalized_node1.vtree_index != lca || normalized_node2.vtree_index != lca) {
+    if (normalized_node1.vtree_index != lca || normalized_node2.vtree_index != lca \
+        || !normalized_node1.is_terminal() || !normalized_node2.is_terminal()) {
         // when not computable, both normalization
         normalized_node1 = cofactors(lhs_tsdd, lca);
-// std::cout<<"normalized_tsdd 1 --------------------------------------------" << std::endl;
-// print(normalized_node1);
+for (int i = 0; i < indent; ++i) std::cout << " ";
+std::cout<<"normalized_tsdd 1 --------------------------------------------" << std::endl;
+print(normalized_node1, indent);
         normalized_node2 = cofactors(rhs_tsdd, lca);
-// std::cout<<"normalized_tsdd 2 --------------------------------------------" << std::endl;
-// print(normalized_node2);
+for (int i = 0; i < indent; ++i) std::cout << " ";
+std::cout<<"normalized_tsdd 2 --------------------------------------------" << std::endl;
+print(normalized_node2, indent);
     }
 
     new_node.vtree_index = lca;
@@ -476,33 +498,40 @@ Tsdd Manager::apply(const Tsdd& lhs_tsdd, const Tsdd& rhs_tsdd, OPERATOR_TYPE op
             for (std::vector<Element>::const_iterator e2 = normalized_node2.elements.begin();
             e2 != normalized_node2.elements.end(); ++e2) {
                 Element new_e;
-                new_e.first = apply(e1->first, e2->first, AND);
+                new_e.first = apply(e1->first, e2->first, AND, indent+4);
                 if (!is_false(new_e.first)) {
-                    new_e.second = apply(e1->second, e2->second, op);
+                    new_e.second = apply(e1->second, e2->second, op, indent+4);
                     new_node.elements.push_back(new_e);
                 }
             }
         }
     }
 
-// std::cout << "before reduce got node ---------------" << std::endl;
-// print(new_node);
+for (int i = 0; i < indent; ++i) std::cout << " ";
+std::cout << "before reduce got node ---------------" << std::endl;
+print(new_node, indent);
 
     // for false node, because <(t, false)> = false.
     if (new_node.is_zero()) return false_;
 
     Tsdd new_tsdd = reduced(new_node);
 
+for (int i = 0; i < indent; ++i) std::cout << " ";
+std::cout << "after reduce got node ---------------" << std::endl;
+print(new_tsdd, indent);
+
     // extra case, <(\alpha, false), (\beta, false)> = false.
     if (new_tsdd.addr_==0) return false_;
 
-    new_tsdd.tag_ = lca;
+// std::cout << min_tag << " " << lca << std::endl;
+
     if (min_tag != lca) {
         new_tsdd.tag_ = min_tag;
     }
 
-// std::cout << "new tsdd ---------------" << std::endl;
-// print(new_tsdd);
+for (int i = 0; i < indent; ++i) std::cout << " ";
+std::cout << "new tsdd with new tag ------------" << std::endl;
+print(new_tsdd, indent);
 
     cache_table_.write_cache(op, lhs_tsdd, rhs_tsdd, new_tsdd);
     return new_tsdd;
@@ -586,7 +615,13 @@ void Manager::print_unique_table() const {
         std::cout << std::endl;
     }
 }
-
+int factorial(int n)
+{
+    if(n > 1)
+        return n * factorial(n - 1);
+    else
+        return 1;
+}
 Tsdd Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_file) {
     // read *.cnf
     std::ifstream infile(cnf_file, std::ios::in);
@@ -619,6 +654,8 @@ Tsdd Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_fi
     } else {
         vtree = new Vtree(vtree_file);
     }
+
+    VTREE_SIZE = vtree->size;
     initial_constants();
     initial_node_table_and_zsdd_trues();
 
@@ -642,13 +679,49 @@ Tsdd Manager::cnf_to_tsdd(const std::string cnf_file, const std::string vtree_fi
 // std::cout << "var : " << var << " done; " << size(fml) << std::endl;
         }
 // std::cout << "clause : " << clause_counter << " starting... " << size(fml) << std::endl;
-        fml = apply(fml, clause, AND);
-        clause_tsdds.push_back(clause);
-// print(clause);
+
+// std::cout<<"apply AND ============================" << std::endl;
 // print(fml);
+// std::cout<<"fml apply with clause ----------------" << std::endl;
+// print(clause);
+        fml = apply(fml, clause, AND);
+// std::cout<<"get new fml --------------------------" << std::endl;
+// print(fml);
+
+        clause_tsdds.push_back(clause);
 std::cout << "clause : " << clause_counter++ << " done; " << size(fml) << std::endl;
     }
-// print(fml);
+
+
+
+// // print_unique_table();
+
+// sort(clause_tsdds.begin(), clause_tsdds.end());
+// int i = 0;
+// do {
+//     Tsdd tmp_fml = trues_.at(1);
+//     for (auto a : clause_tsdds) {
+// // std::cout<<"apply AND ============================" << std::endl;
+// // print(tmp_fml);
+// // std::cout<<"fml apply with clause ----------------" << std::endl;
+// // print(a);
+
+// // std::cout << "clause : " << a.tag_ << " " << a.addr_ << std::endl;
+//         tmp_fml = apply(fml, a, AND);
+// // std::cout<<"get new fml --------------------------" << std::endl;
+// // print(fml);
+//     }
+// std::cout << "permutation : \t" << i++ << "; size: " << size(tmp_fml) << std::endl;
+// } while (std::next_permutation(clause_tsdds.begin(), clause_tsdds.end()));
+
+
+
+
+
+print(fml);
+// print_unique_table();
+
+
     return fml;
 
     while (clause_tsdds.size() > 1) {

@@ -7,7 +7,7 @@
 
 
 extern std::map<int, int> get_index_by_var;
-
+extern int VTREE_SIZE;
 
 namespace tsdd {
 

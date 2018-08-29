@@ -1,2 +1,5056 @@
-s27.scan.cnf	18  5    clause : 1 done; 2
+figure1.cnf	4  6    Vtree Size: 7
+2(-3)  x0
+ 1(0)  x1
+ 4(-2)  x0
+  3(0)  x2
+  6(-1)  x0
+   5(0)  x3
+   7(0)  x4
+ init done @@@@@@@@@@@@@@@@@@@@@@@@@@@@ 
+clause : 1 done; 2
 clause : 2 done; 4
+clause : 3 done; 8
+clause : 4 done; 10
+clause : 5 done; 10
+clause : 6 done; 6
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 4 25
+permutation : 	0; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 4 22
+permutation : 	1; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 4 25
+permutation : 	2; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 38
+permutation : 	3; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 4 22
+permutation : 	4; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 38
+permutation : 	5; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 4 25
+permutation : 	6; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 4 22
+permutation : 	7; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 4 25
+permutation : 	8; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 37
+permutation : 	9; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 4 22
+permutation : 	10; size: 6
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 37
+permutation : 	11; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 4 25
+permutation : 	12; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 38
+permutation : 	13; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 4 25
+permutation : 	14; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 37
+permutation : 	15; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 38
+permutation : 	16; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 37
+permutation : 	17; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 4 22
+permutation : 	18; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 38
+permutation : 	19; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 4 22
+permutation : 	20; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 37
+permutation : 	21; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 38
+permutation : 	22; size: 6
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 37
+permutation : 	23; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 4 25
+permutation : 	24; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 4 22
+permutation : 	25; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 4 25
+permutation : 	26; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 38
+permutation : 	27; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 4 22
+permutation : 	28; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 38
+permutation : 	29; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 4 25
+permutation : 	30; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 4 22
+permutation : 	31; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 4 25
+permutation : 	32; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 32
+permutation : 	33; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 4 22
+permutation : 	34; size: 6
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 32
+permutation : 	35; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 4 25
+permutation : 	36; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 38
+permutation : 	37; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 4 25
+permutation : 	38; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 32
+permutation : 	39; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 38
+permutation : 	40; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 32
+permutation : 	41; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 4 22
+permutation : 	42; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 38
+permutation : 	43; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 4 22
+permutation : 	44; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 32
+permutation : 	45; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 38
+permutation : 	46; size: 6
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 32
+permutation : 	47; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 4 25
+permutation : 	48; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 4 22
+permutation : 	49; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 4 25
+permutation : 	50; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 37
+permutation : 	51; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 4 22
+permutation : 	52; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 37
+permutation : 	53; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 4 25
+permutation : 	54; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 4 22
+permutation : 	55; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 4 25
+permutation : 	56; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 32
+permutation : 	57; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 4 22
+permutation : 	58; size: 6
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 32
+permutation : 	59; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 4 25
+permutation : 	60; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 37
+permutation : 	61; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 4 25
+permutation : 	62; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 32
+permutation : 	63; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 37
+permutation : 	64; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 32
+permutation : 	65; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 4 22
+permutation : 	66; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 37
+permutation : 	67; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 4 22
+permutation : 	68; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 32
+permutation : 	69; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 37
+permutation : 	70; size: 6
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 32
+permutation : 	71; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 25
+permutation : 	72; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 38
+permutation : 	73; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 25
+permutation : 	74; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 37
+permutation : 	75; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 38
+permutation : 	76; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 37
+permutation : 	77; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 25
+permutation : 	78; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 38
+permutation : 	79; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 25
+permutation : 	80; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 32
+permutation : 	81; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 38
+permutation : 	82; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 32
+permutation : 	83; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 25
+permutation : 	84; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 37
+permutation : 	85; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 25
+permutation : 	86; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 32
+permutation : 	87; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 37
+permutation : 	88; size: 6
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 32
+permutation : 	89; size: 6
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 38
+permutation : 	90; size: 6
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 37
+permutation : 	91; size: 6
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 38
+permutation : 	92; size: 6
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 32
+permutation : 	93; size: 6
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 37
+permutation : 	94; size: 6
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 32
+permutation : 	95; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 22
+permutation : 	96; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 38
+permutation : 	97; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 22
+permutation : 	98; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 37
+permutation : 	99; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 38
+permutation : 	100; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 37
+permutation : 	101; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 22
+permutation : 	102; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 38
+permutation : 	103; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 22
+permutation : 	104; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 32
+permutation : 	105; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 38
+permutation : 	106; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 32
+permutation : 	107; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 22
+permutation : 	108; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 37
+permutation : 	109; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 22
+permutation : 	110; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 32
+permutation : 	111; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 37
+permutation : 	112; size: 6
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 32
+permutation : 	113; size: 6
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 38
+permutation : 	114; size: 6
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 37
+permutation : 	115; size: 6
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 38
+permutation : 	116; size: 6
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 32
+permutation : 	117; size: 6
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 37
+permutation : 	118; size: 6
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 32
+permutation : 	119; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 4 25
+permutation : 	120; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 4 22
+permutation : 	121; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 4 25
+permutation : 	122; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 38
+permutation : 	123; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 4 22
+permutation : 	124; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 38
+permutation : 	125; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 4 25
+permutation : 	126; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 4 22
+permutation : 	127; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 4 25
+permutation : 	128; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 37
+permutation : 	129; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 4 22
+permutation : 	130; size: 6
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 37
+permutation : 	131; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 4 25
+permutation : 	132; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 38
+permutation : 	133; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 4 25
+permutation : 	134; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 37
+permutation : 	135; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 38
+permutation : 	136; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 37
+permutation : 	137; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 4 22
+permutation : 	138; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 38
+permutation : 	139; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 4 22
+permutation : 	140; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 37
+permutation : 	141; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 38
+permutation : 	142; size: 6
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 37
+permutation : 	143; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 4 25
+permutation : 	144; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 4 22
+permutation : 	145; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 4 25
+permutation : 	146; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 38
+permutation : 	147; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 4 22
+permutation : 	148; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 38
+permutation : 	149; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 4 25
+permutation : 	150; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 4 22
+permutation : 	151; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 4 25
+permutation : 	152; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 23
+permutation : 	153; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 4 22
+permutation : 	154; size: 6
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 23
+permutation : 	155; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 4 25
+permutation : 	156; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 38
+permutation : 	157; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 4 25
+permutation : 	158; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 23
+permutation : 	159; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 38
+permutation : 	160; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 23
+permutation : 	161; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 4 22
+permutation : 	162; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 38
+permutation : 	163; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 4 22
+permutation : 	164; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 23
+permutation : 	165; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 38
+permutation : 	166; size: 6
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 23
+permutation : 	167; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 4 25
+permutation : 	168; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 4 22
+permutation : 	169; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 4 25
+permutation : 	170; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 37
+permutation : 	171; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 4 22
+permutation : 	172; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 37
+permutation : 	173; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 4 25
+permutation : 	174; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 4 22
+permutation : 	175; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 4 25
+permutation : 	176; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 23
+permutation : 	177; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 4 22
+permutation : 	178; size: 6
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 23
+permutation : 	179; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 4 25
+permutation : 	180; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 37
+permutation : 	181; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 4 25
+permutation : 	182; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 23
+permutation : 	183; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 37
+permutation : 	184; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 23
+permutation : 	185; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 4 22
+permutation : 	186; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 37
+permutation : 	187; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 4 22
+permutation : 	188; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 23
+permutation : 	189; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 37
+permutation : 	190; size: 6
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 23
+permutation : 	191; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 25
+permutation : 	192; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 38
+permutation : 	193; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 25
+permutation : 	194; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 37
+permutation : 	195; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 38
+permutation : 	196; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 37
+permutation : 	197; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 25
+permutation : 	198; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 38
+permutation : 	199; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 25
+permutation : 	200; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 23
+permutation : 	201; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 38
+permutation : 	202; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 23
+permutation : 	203; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 25
+permutation : 	204; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 37
+permutation : 	205; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 25
+permutation : 	206; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 23
+permutation : 	207; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 37
+permutation : 	208; size: 6
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 23
+permutation : 	209; size: 6
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 38
+permutation : 	210; size: 6
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 37
+permutation : 	211; size: 6
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 38
+permutation : 	212; size: 6
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 23
+permutation : 	213; size: 6
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 37
+permutation : 	214; size: 6
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 23
+permutation : 	215; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 22
+permutation : 	216; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 38
+permutation : 	217; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 22
+permutation : 	218; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 37
+permutation : 	219; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 38
+permutation : 	220; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 37
+permutation : 	221; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 22
+permutation : 	222; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 38
+permutation : 	223; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 22
+permutation : 	224; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 23
+permutation : 	225; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 38
+permutation : 	226; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 23
+permutation : 	227; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 22
+permutation : 	228; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 37
+permutation : 	229; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 22
+permutation : 	230; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 23
+permutation : 	231; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 37
+permutation : 	232; size: 6
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 23
+permutation : 	233; size: 6
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 38
+permutation : 	234; size: 6
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 37
+permutation : 	235; size: 6
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 38
+permutation : 	236; size: 6
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 23
+permutation : 	237; size: 6
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 37
+permutation : 	238; size: 6
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 23
+permutation : 	239; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 4 25
+permutation : 	240; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 4 22
+permutation : 	241; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 4 25
+permutation : 	242; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 38
+permutation : 	243; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 4 22
+permutation : 	244; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 38
+permutation : 	245; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 4 25
+permutation : 	246; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 4 22
+permutation : 	247; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 4 25
+permutation : 	248; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 32
+permutation : 	249; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 4 22
+permutation : 	250; size: 6
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 32
+permutation : 	251; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 4 25
+permutation : 	252; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 38
+permutation : 	253; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 4 25
+permutation : 	254; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 32
+permutation : 	255; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 38
+permutation : 	256; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 32
+permutation : 	257; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 4 22
+permutation : 	258; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 38
+permutation : 	259; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 4 22
+permutation : 	260; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 32
+permutation : 	261; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 38
+permutation : 	262; size: 6
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 32
+permutation : 	263; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 4 25
+permutation : 	264; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 4 22
+permutation : 	265; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 4 25
+permutation : 	266; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 38
+permutation : 	267; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 4 22
+permutation : 	268; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 38
+permutation : 	269; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 4 25
+permutation : 	270; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 4 22
+permutation : 	271; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 4 25
+permutation : 	272; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 23
+permutation : 	273; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 4 22
+permutation : 	274; size: 6
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 23
+permutation : 	275; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 4 25
+permutation : 	276; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 38
+permutation : 	277; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 4 25
+permutation : 	278; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 23
+permutation : 	279; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 38
+permutation : 	280; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 23
+permutation : 	281; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 4 22
+permutation : 	282; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 38
+permutation : 	283; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 4 22
+permutation : 	284; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 23
+permutation : 	285; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 38
+permutation : 	286; size: 6
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 23
+permutation : 	287; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 4 25
+permutation : 	288; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 4 22
+permutation : 	289; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 4 25
+permutation : 	290; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 32
+permutation : 	291; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 4 22
+permutation : 	292; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 32
+permutation : 	293; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 4 25
+permutation : 	294; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 4 22
+permutation : 	295; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 4 25
+permutation : 	296; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 23
+permutation : 	297; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 4 22
+permutation : 	298; size: 6
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 23
+permutation : 	299; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 4 25
+permutation : 	300; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 32
+permutation : 	301; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 4 25
+permutation : 	302; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 23
+permutation : 	303; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 32
+permutation : 	304; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 23
+permutation : 	305; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 4 22
+permutation : 	306; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 32
+permutation : 	307; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 4 22
+permutation : 	308; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 23
+permutation : 	309; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 32
+permutation : 	310; size: 6
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 23
+permutation : 	311; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 25
+permutation : 	312; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 38
+permutation : 	313; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 25
+permutation : 	314; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 32
+permutation : 	315; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 38
+permutation : 	316; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 32
+permutation : 	317; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 25
+permutation : 	318; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 38
+permutation : 	319; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 25
+permutation : 	320; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 23
+permutation : 	321; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 38
+permutation : 	322; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 23
+permutation : 	323; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 25
+permutation : 	324; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 32
+permutation : 	325; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 25
+permutation : 	326; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 23
+permutation : 	327; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 32
+permutation : 	328; size: 6
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 23
+permutation : 	329; size: 6
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 38
+permutation : 	330; size: 6
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 32
+permutation : 	331; size: 6
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 38
+permutation : 	332; size: 6
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 23
+permutation : 	333; size: 6
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 32
+permutation : 	334; size: 6
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 23
+permutation : 	335; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 22
+permutation : 	336; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 38
+permutation : 	337; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 22
+permutation : 	338; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 32
+permutation : 	339; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 38
+permutation : 	340; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 32
+permutation : 	341; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 22
+permutation : 	342; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 38
+permutation : 	343; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 22
+permutation : 	344; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 23
+permutation : 	345; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 38
+permutation : 	346; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 23
+permutation : 	347; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 22
+permutation : 	348; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 32
+permutation : 	349; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 22
+permutation : 	350; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 23
+permutation : 	351; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 32
+permutation : 	352; size: 6
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 23
+permutation : 	353; size: 6
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 38
+permutation : 	354; size: 6
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 32
+permutation : 	355; size: 6
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 38
+permutation : 	356; size: 6
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 23
+permutation : 	357; size: 6
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 32
+permutation : 	358; size: 6
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 23
+permutation : 	359; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 4 25
+permutation : 	360; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 4 22
+permutation : 	361; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 4 25
+permutation : 	362; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 37
+permutation : 	363; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 4 22
+permutation : 	364; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 37
+permutation : 	365; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 4 25
+permutation : 	366; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 4 22
+permutation : 	367; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 4 25
+permutation : 	368; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 32
+permutation : 	369; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 4 22
+permutation : 	370; size: 6
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 32
+permutation : 	371; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 4 25
+permutation : 	372; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 37
+permutation : 	373; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 4 25
+permutation : 	374; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 32
+permutation : 	375; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 37
+permutation : 	376; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 32
+permutation : 	377; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 4 22
+permutation : 	378; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 37
+permutation : 	379; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 4 22
+permutation : 	380; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 32
+permutation : 	381; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 37
+permutation : 	382; size: 6
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 32
+permutation : 	383; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 4 25
+permutation : 	384; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 4 22
+permutation : 	385; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 4 25
+permutation : 	386; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 37
+permutation : 	387; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 4 22
+permutation : 	388; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 37
+permutation : 	389; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 4 25
+permutation : 	390; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 4 22
+permutation : 	391; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 4 25
+permutation : 	392; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 23
+permutation : 	393; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 4 22
+permutation : 	394; size: 6
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 23
+permutation : 	395; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 4 25
+permutation : 	396; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 37
+permutation : 	397; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 4 25
+permutation : 	398; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 23
+permutation : 	399; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 37
+permutation : 	400; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 23
+permutation : 	401; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 4 22
+permutation : 	402; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 37
+permutation : 	403; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 4 22
+permutation : 	404; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 23
+permutation : 	405; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 37
+permutation : 	406; size: 6
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 23
+permutation : 	407; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 4 25
+permutation : 	408; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 4 22
+permutation : 	409; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 4 25
+permutation : 	410; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 4 25
+clause : 2 32
+permutation : 	411; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 4 22
+permutation : 	412; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 4 22
+clause : 2 32
+permutation : 	413; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 4 25
+permutation : 	414; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 4 22
+permutation : 	415; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 4 25
+permutation : 	416; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 4 25
+clause : 2 23
+permutation : 	417; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 4 22
+permutation : 	418; size: 6
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 4 22
+clause : 2 23
+permutation : 	419; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 4 25
+permutation : 	420; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 32
+permutation : 	421; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 4 25
+permutation : 	422; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 23
+permutation : 	423; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 32
+permutation : 	424; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 23
+permutation : 	425; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 4 22
+permutation : 	426; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 32
+permutation : 	427; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 4 22
+permutation : 	428; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 23
+permutation : 	429; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 32
+permutation : 	430; size: 6
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 23
+permutation : 	431; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 25
+permutation : 	432; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 37
+permutation : 	433; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 25
+permutation : 	434; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 32
+permutation : 	435; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 37
+permutation : 	436; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 32
+permutation : 	437; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 25
+permutation : 	438; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 37
+permutation : 	439; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 25
+permutation : 	440; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 23
+permutation : 	441; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 37
+permutation : 	442; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 23
+permutation : 	443; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 25
+permutation : 	444; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 32
+permutation : 	445; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 25
+permutation : 	446; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 23
+permutation : 	447; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 32
+permutation : 	448; size: 6
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 23
+permutation : 	449; size: 6
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 37
+permutation : 	450; size: 6
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 32
+permutation : 	451; size: 6
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 37
+permutation : 	452; size: 6
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 23
+permutation : 	453; size: 6
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 32
+permutation : 	454; size: 6
+clause : 2 38
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 23
+permutation : 	455; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 22
+permutation : 	456; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 37
+permutation : 	457; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 22
+permutation : 	458; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 32
+permutation : 	459; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 37
+permutation : 	460; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 32
+permutation : 	461; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 22
+permutation : 	462; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 37
+permutation : 	463; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 22
+permutation : 	464; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 23
+permutation : 	465; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 37
+permutation : 	466; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 23
+permutation : 	467; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 22
+permutation : 	468; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 32
+permutation : 	469; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 22
+permutation : 	470; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 23
+permutation : 	471; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 32
+permutation : 	472; size: 6
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 23
+permutation : 	473; size: 6
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 37
+permutation : 	474; size: 6
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 32
+permutation : 	475; size: 6
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 37
+permutation : 	476; size: 6
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 23
+permutation : 	477; size: 6
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 32
+permutation : 	478; size: 6
+clause : 2 38
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 23
+permutation : 	479; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 25
+permutation : 	480; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 38
+permutation : 	481; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 25
+permutation : 	482; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 37
+permutation : 	483; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 38
+permutation : 	484; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 37
+permutation : 	485; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 25
+permutation : 	486; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 38
+permutation : 	487; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 25
+permutation : 	488; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 32
+permutation : 	489; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 38
+permutation : 	490; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 32
+permutation : 	491; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 25
+permutation : 	492; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 37
+permutation : 	493; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 25
+permutation : 	494; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 32
+permutation : 	495; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 37
+permutation : 	496; size: 6
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 32
+permutation : 	497; size: 6
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 38
+permutation : 	498; size: 6
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 37
+permutation : 	499; size: 6
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 38
+permutation : 	500; size: 6
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 32
+permutation : 	501; size: 6
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 37
+permutation : 	502; size: 6
+clause : 4 22
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 32
+permutation : 	503; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 25
+permutation : 	504; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 38
+permutation : 	505; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 25
+permutation : 	506; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 37
+permutation : 	507; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 38
+permutation : 	508; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 37
+permutation : 	509; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 25
+permutation : 	510; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 38
+permutation : 	511; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 25
+permutation : 	512; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 23
+permutation : 	513; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 38
+permutation : 	514; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 23
+permutation : 	515; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 25
+permutation : 	516; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 37
+permutation : 	517; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 25
+permutation : 	518; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 23
+permutation : 	519; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 37
+permutation : 	520; size: 6
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 23
+permutation : 	521; size: 6
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 38
+permutation : 	522; size: 6
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 37
+permutation : 	523; size: 6
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 38
+permutation : 	524; size: 6
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 23
+permutation : 	525; size: 6
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 37
+permutation : 	526; size: 6
+clause : 4 22
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 23
+permutation : 	527; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 25
+permutation : 	528; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 38
+permutation : 	529; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 25
+permutation : 	530; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 25
+clause : 2 32
+permutation : 	531; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 38
+permutation : 	532; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 38
+clause : 2 32
+permutation : 	533; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 25
+permutation : 	534; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 38
+permutation : 	535; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 25
+permutation : 	536; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 25
+clause : 2 23
+permutation : 	537; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 38
+permutation : 	538; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 38
+clause : 2 23
+permutation : 	539; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 25
+permutation : 	540; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 32
+permutation : 	541; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 25
+permutation : 	542; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 23
+permutation : 	543; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 32
+permutation : 	544; size: 6
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 23
+permutation : 	545; size: 6
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 38
+permutation : 	546; size: 6
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 32
+permutation : 	547; size: 6
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 38
+permutation : 	548; size: 6
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 23
+permutation : 	549; size: 6
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 32
+permutation : 	550; size: 6
+clause : 4 22
+clause : 2 37
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 23
+permutation : 	551; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 25
+permutation : 	552; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 25
+clause : 2 37
+permutation : 	553; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 25
+permutation : 	554; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 25
+clause : 2 32
+permutation : 	555; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 32
+clause : 2 37
+permutation : 	556; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 4 25
+clause : 2 37
+clause : 2 32
+permutation : 	557; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 25
+permutation : 	558; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 25
+clause : 2 37
+permutation : 	559; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 25
+permutation : 	560; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 25
+clause : 2 23
+permutation : 	561; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 23
+clause : 2 37
+permutation : 	562; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 4 25
+clause : 2 37
+clause : 2 23
+permutation : 	563; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 25
+permutation : 	564; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 25
+clause : 2 32
+permutation : 	565; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 25
+permutation : 	566; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 25
+clause : 2 23
+permutation : 	567; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 23
+clause : 2 32
+permutation : 	568; size: 6
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 4 25
+clause : 2 32
+clause : 2 23
+permutation : 	569; size: 6
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 37
+permutation : 	570; size: 6
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 32
+permutation : 	571; size: 6
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 37
+permutation : 	572; size: 6
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 23
+permutation : 	573; size: 6
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 32
+permutation : 	574; size: 6
+clause : 4 22
+clause : 2 38
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 23
+permutation : 	575; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 2 38
+permutation : 	576; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 2 37
+permutation : 	577; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 2 38
+permutation : 	578; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 2 32
+permutation : 	579; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 2 37
+permutation : 	580; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 2 32
+permutation : 	581; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 2 38
+permutation : 	582; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 2 37
+permutation : 	583; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 2 38
+permutation : 	584; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 2 23
+permutation : 	585; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 2 37
+permutation : 	586; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 2 23
+permutation : 	587; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 2 38
+permutation : 	588; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 2 32
+permutation : 	589; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 2 38
+permutation : 	590; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 2 23
+permutation : 	591; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 2 32
+permutation : 	592; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 2 23
+permutation : 	593; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 2 37
+permutation : 	594; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 2 32
+permutation : 	595; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 2 37
+permutation : 	596; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 2 23
+permutation : 	597; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 2 32
+permutation : 	598; size: 6
+clause : 4 22
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 2 23
+permutation : 	599; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 22
+permutation : 	600; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 38
+permutation : 	601; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 22
+permutation : 	602; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 37
+permutation : 	603; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 38
+permutation : 	604; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 37
+permutation : 	605; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 22
+permutation : 	606; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 38
+permutation : 	607; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 22
+permutation : 	608; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 32
+permutation : 	609; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 38
+permutation : 	610; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 32
+permutation : 	611; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 22
+permutation : 	612; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 37
+permutation : 	613; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 22
+permutation : 	614; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 32
+permutation : 	615; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 37
+permutation : 	616; size: 6
+clause : 4 25
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 32
+permutation : 	617; size: 6
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 38
+permutation : 	618; size: 6
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 37
+permutation : 	619; size: 6
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 38
+permutation : 	620; size: 6
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 32
+permutation : 	621; size: 6
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 37
+permutation : 	622; size: 6
+clause : 4 25
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 32
+permutation : 	623; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 4 22
+permutation : 	624; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 38
+permutation : 	625; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 4 22
+permutation : 	626; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 37
+permutation : 	627; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 38
+permutation : 	628; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 37
+permutation : 	629; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 22
+permutation : 	630; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 38
+permutation : 	631; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 22
+permutation : 	632; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 23
+permutation : 	633; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 38
+permutation : 	634; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 23
+permutation : 	635; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 22
+permutation : 	636; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 37
+permutation : 	637; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 22
+permutation : 	638; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 23
+permutation : 	639; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 37
+permutation : 	640; size: 6
+clause : 4 25
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 23
+permutation : 	641; size: 6
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 38
+permutation : 	642; size: 6
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 37
+permutation : 	643; size: 6
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 38
+permutation : 	644; size: 6
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 23
+permutation : 	645; size: 6
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 37
+permutation : 	646; size: 6
+clause : 4 25
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 23
+permutation : 	647; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 4 22
+permutation : 	648; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 38
+permutation : 	649; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 4 22
+permutation : 	650; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 4 22
+clause : 2 32
+permutation : 	651; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 38
+permutation : 	652; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 38
+clause : 2 32
+permutation : 	653; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 4 22
+permutation : 	654; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 38
+permutation : 	655; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 4 22
+permutation : 	656; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 4 22
+clause : 2 23
+permutation : 	657; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 38
+permutation : 	658; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 38
+clause : 2 23
+permutation : 	659; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 22
+permutation : 	660; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 32
+permutation : 	661; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 22
+permutation : 	662; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 23
+permutation : 	663; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 32
+permutation : 	664; size: 6
+clause : 4 25
+clause : 2 37
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 23
+permutation : 	665; size: 6
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 38
+permutation : 	666; size: 6
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 32
+permutation : 	667; size: 6
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 38
+permutation : 	668; size: 6
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 23
+permutation : 	669; size: 6
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 32
+permutation : 	670; size: 6
+clause : 4 25
+clause : 2 37
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 23
+permutation : 	671; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 4 22
+permutation : 	672; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 4 22
+clause : 2 37
+permutation : 	673; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 4 22
+permutation : 	674; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 4 22
+clause : 2 32
+permutation : 	675; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 32
+clause : 2 37
+permutation : 	676; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 23
+clause : 4 22
+clause : 2 37
+clause : 2 32
+permutation : 	677; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 4 22
+permutation : 	678; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 4 22
+clause : 2 37
+permutation : 	679; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 4 22
+permutation : 	680; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 4 22
+clause : 2 23
+permutation : 	681; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 23
+clause : 2 37
+permutation : 	682; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 32
+clause : 4 22
+clause : 2 37
+clause : 2 23
+permutation : 	683; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 4 22
+permutation : 	684; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 4 22
+clause : 2 32
+permutation : 	685; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 4 22
+permutation : 	686; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 4 22
+clause : 2 23
+permutation : 	687; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 23
+clause : 2 32
+permutation : 	688; size: 6
+clause : 4 25
+clause : 2 38
+clause : 2 37
+clause : 4 22
+clause : 2 32
+clause : 2 23
+permutation : 	689; size: 6
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 37
+permutation : 	690; size: 6
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 32
+permutation : 	691; size: 6
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 37
+permutation : 	692; size: 6
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 23
+permutation : 	693; size: 6
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 32
+permutation : 	694; size: 6
+clause : 4 25
+clause : 2 38
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 23
+permutation : 	695; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 37
+clause : 2 38
+permutation : 	696; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 32
+clause : 2 38
+clause : 2 37
+permutation : 	697; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 32
+clause : 2 38
+permutation : 	698; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 37
+clause : 2 38
+clause : 2 32
+permutation : 	699; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 32
+clause : 2 37
+permutation : 	700; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 23
+clause : 2 38
+clause : 2 37
+clause : 2 32
+permutation : 	701; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 37
+clause : 2 38
+permutation : 	702; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 23
+clause : 2 38
+clause : 2 37
+permutation : 	703; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 23
+clause : 2 38
+permutation : 	704; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 37
+clause : 2 38
+clause : 2 23
+permutation : 	705; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 23
+clause : 2 37
+permutation : 	706; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 32
+clause : 2 38
+clause : 2 37
+clause : 2 23
+permutation : 	707; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 32
+clause : 2 38
+permutation : 	708; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 23
+clause : 2 38
+clause : 2 32
+permutation : 	709; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 23
+clause : 2 38
+permutation : 	710; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 32
+clause : 2 38
+clause : 2 23
+permutation : 	711; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 23
+clause : 2 32
+permutation : 	712; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 37
+clause : 2 38
+clause : 2 32
+clause : 2 23
+permutation : 	713; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 32
+clause : 2 37
+permutation : 	714; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 23
+clause : 2 37
+clause : 2 32
+permutation : 	715; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 23
+clause : 2 37
+permutation : 	716; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 32
+clause : 2 37
+clause : 2 23
+permutation : 	717; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 23
+clause : 2 32
+permutation : 	718; size: 6
+clause : 4 25
+clause : 4 22
+clause : 2 38
+clause : 2 37
+clause : 2 32
+clause : 2 23
+permutation : 	719; size: 6
+6		0.0719
