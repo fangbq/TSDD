@@ -9,6 +9,7 @@
 #include <stack>
 #include <functional>
 #include <map>
+#include <set>
 #include "cache_table.h"
 #include "unique_table.h"
 // #include "tsdd.h"
@@ -21,6 +22,8 @@ public:
     Tsdd false_ = *new Tsdd(0, 0);  // false_(0, 0); this kind of initialization ok?!!!
     Vtree* vtree = NULL;
     int var_no_ = 0;
+
+    std::set<int> left_most_vars_;
 
     // for sdd left and right trues
     std::unordered_map<int, Tsdd> trues_;

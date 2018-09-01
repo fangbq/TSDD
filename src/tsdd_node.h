@@ -91,12 +91,12 @@ namespace std {
 template <> struct hash<tsdd::Tsdd> {
     std::size_t operator()(const tsdd::Tsdd& t) const {
         size_t h = 0;
-        if (t.is_true()) {
-            // std::cout << "hhhhh" << std::endl;
-            tsdd::hash_combine(h, hash<int>()(-1));
-            tsdd::hash_combine(h, hash<tsdd::addr_t>()(-1));
-            return h;
-        }
+        // if (t.is_true()) {
+        //     // std::cout << "hhhhh" << std::endl;
+        //     tsdd::hash_combine(h, hash<int>()(-1));
+        //     tsdd::hash_combine(h, hash<tsdd::addr_t>()(-1));
+        //     return h;
+        // }
         tsdd::hash_combine(h, hash<int>()(t.tag_));
         tsdd::hash_combine(h, hash<tsdd::addr_t>()(t.addr_));
         return h;

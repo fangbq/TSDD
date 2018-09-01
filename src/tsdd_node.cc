@@ -5,12 +5,13 @@ namespace tsdd {
 
 bool TsddNode::operator==(const TsddNode& tsdd_node) const {
 // std::cout << "equals..." << std::endl;
+// std::cout << "comparing ..." << value << " " << vtree_index << " | " << tsdd_node.value << " " << tsdd_node.vtree_index << std::endl;
     if (is_terminal() && tsdd_node.is_terminal()) {
-        return value == tsdd_node.value;
+        return (value == tsdd_node.value && vtree_index == tsdd_node.vtree_index);
     } else if (elements.size() == tsdd_node.elements.size()) {
         return elements == tsdd_node .elements;
     }
-    // cout << "no eq" << endl;
+// std::cout << "no eq" << std::endl;
     return false;
 }
 
