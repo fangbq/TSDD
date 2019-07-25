@@ -39,16 +39,18 @@ int main(int argc, char** argv) {
     clock_t start = clock();
     string vtree_file = "";
     bool input_cnf_file = false;
-    if (argv[2]) vtree_file = argv[2];
+    if (argv[2]) vtree_file = argv[2];  // argv[2]: vtree file path
     if (strstr(argv[1], "cnf")) input_cnf_file = true;
     Tsdd fml;
-    fml = manager.cnf_to_tsdd(argv[1], vtree_file);  // for CNF file
+    fml = manager.cnf_to_tsdd(argv[1], vtree_file);  // argv[1]: CNF file path
     clock_t finish = clock();
     double ptime = (double)(finish - start) / CLOCKS_PER_SEC;  // runtime
     cout.setf(ios::showpoint);
     cout.precision(4);
     cout.setf(ios::fixed);
-    cout << manager.size(fml) << "\t\t" << ptime << endl;
+    bool implicit_partition = false;
+    if (argv[3] && atoi(argv[3])==1) implicit_partition = true;
+    cout << (implicit_partition ? manager.size_implicit(fml) : manager.size(fml)) << "\t\t" << ptime << endl << endl;
 
     return 0;
 }

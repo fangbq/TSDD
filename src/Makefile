@@ -1,7 +1,7 @@
 CXX = g++
 
 
-CXXFLAGS +=  -O3 -Wall -Wextra -std=c++11 -pg
+CXXFLAGS +=  -O3 -Wall -Wextra -std=c++11
 
 
 APPS =  tsdd

@@ -5,8 +5,9 @@
 #include <unordered_set>
 #include <map>
 #include <cassert>
-#include <chrono>
+#include <chrono>       // std::chrono::system_clock
 #include <utility>
+#include <random>       // std::default_random_engine
 
 namespace tsdd {
 
@@ -20,7 +21,8 @@ enum OPERATOR_TYPE {
 
 enum VTREE_TYPE {
     TRIVIAL_TREE,
-    RANDOM_TREE
+    RANDOM_TREE,
+    RIGHT_LINEAR_TREE
 };
 
 using addr_t = long long int;

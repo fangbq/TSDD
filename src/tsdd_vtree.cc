@@ -57,6 +57,17 @@ Vtree::Vtree(int start_var_index, int end_var_index, std::vector<int> full_order
             depth = std::min(lt->depth, rt->depth)-1;
             break;
         }
+        case RIGHT_LINEAR_TREE:
+        {
+            int mid = start_var_index+1;
+            index = mid;
+            // std::cout << mid << std::endl;
+            lt = new Vtree(start_var_index, mid-1, full_order, t);
+            rt = new Vtree(mid+1, end_var_index, full_order, t);
+            size = lt->size + rt->size + 1;
+            depth = std::min(lt->depth, rt->depth)-1;
+            break;
+        }
         default:
             std::cerr << "vtree error 2" << std::endl;
             ;
@@ -76,6 +87,25 @@ Vtree::Vtree(const std::string& file_name) {
 
     while (getline(ifs, line)) {
         if (line[0] == 'c') continue;
+        else if (line[0] != 'v') {
+            // linear order to vtree
+            // std::cout << std::endl << line << std::endl;
+            std::vector<int> vars_order;
+            while (line.length()>1) {
+                // std::cout << line.substr(0,line.find_first_of(' ')) << "-" << std::endl;
+                vars_order.push_back(atoi(line.substr(0,line.find_first_of(' ')).c_str()));
+                // std::cout << vars_order.back() << std::endl;
+                line = line.substr(line.find_first_of(' ')+1);
+            }
+            // vtree = new Vtree(1, var_no*2-1, vars_order, RANDOM_TREE);
+            index = 2;
+            // std::cout << mid << std::endl;
+            lt = new Vtree(1, 1, vars_order, RIGHT_LINEAR_TREE);
+            rt = new Vtree(3, vars_order.size()*2-1, vars_order, RIGHT_LINEAR_TREE);
+            size = lt->size + rt->size + 1;
+            depth = std::min(lt->depth, rt->depth)-1;
+            return;
+        }
         size = stoi(line.substr(6, line.length()-6));
         break;
     }
@@ -103,6 +133,8 @@ Vtree::Vtree(const std::string& file_name) {
     size = vtree_nodes.top().size;
     lt = new Vtree(*vtree_nodes.top().lt);
     rt = new Vtree(*vtree_nodes.top().rt);
+    // initial depth of vtree node
+    lt->depth = rt->depth = depth+1;
     vtree_nodes.pop();
     while (!vtree_nodes.empty()) {
         merge(vtree_nodes.top());
@@ -120,13 +152,13 @@ Vtree Vtree::merge(const Vtree& hat) {
         else {
             lt = new Vtree(hat.lt->index);
             rt = new Vtree(hat.rt->index);
+            // initial depth of vtree node
+            lt->depth = rt->depth = depth+1;
         }
     } else if (index < hat.index) {
         rt->merge(hat);
-    } else if (index > hat.index) {
-        lt->merge(hat);
     } else {
-        std::cerr << "Vtree merge error!!!" << std::endl;
+        lt->merge(hat);
     }
     size = 1 + (lt ? lt->size : 0) + (rt ? rt->size : 0);
     return *this;
@@ -192,6 +224,8 @@ int Vtree::get_lca(int a, int b) {
 // cout << "get_lca..." << endl;
     // if (!&v) return 0;
     // cout << a << " " << v.index << " " << b << endl;
+    if (a == 0) return b;  // vtree node for true_ and false_ is 0
+    if (b == 0) return a;
     if (index == a || index == b) return index;
     int L = lt ? lt->get_lca(a, b) : 0;
     int R = rt ? rt->get_lca(a, b) : 0;

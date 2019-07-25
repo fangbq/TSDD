@@ -28,7 +28,7 @@ public:
         return *this;
     }
 
-    inline bool is_true() const { return addr_>0 && addr_<=VTREE_SIZE && (long long int)tag_==addr_; }
+    inline bool is_true() const { return addr_==1 && tag_==0; }
 
     bool operator==(const Tsdd& tsdd) const {
         // for same_sub, different sytax trues done in manager
@@ -74,7 +74,7 @@ public:
     bool operator==(const TsddNode& tsdd_node) const;
 
     bool is_terminal() const;
-    bool is_positive() const;
+    // bool is_positive() const;
     bool is_negative() const;
     bool is_zero() const;
     bool is_one() const;

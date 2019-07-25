@@ -50,6 +50,18 @@ public:
 	    return make_tsdd(sorted_node);
 	}
 
+	int node_size() const {
+		return tsdd_nodes_.size();
+	}
+
+	int table_size() const {
+		return uniq_table_.size();
+	}
+
+	void clean() {
+		tsdd_nodes_.clear();
+		uniq_table_.clear();
+	}
 public:
     std::vector<TsddNode> tsdd_nodes_;
     std::unordered_map<TsddNode, addr_t> uniq_table_;

@@ -7,6 +7,8 @@
 #include <algorithm>
 #include "tsdd_node.h"
 
+using namespace std;
+
 namespace tsdd {
 
 class CacheTable {
@@ -22,22 +24,21 @@ public:
 	    cache_table_[key] = std::make_tuple(op, lhs, rhs, res);
 	}
 
-	void clear_cache() {
-	    // for (auto it =  cache_table_.begin(); it != cache_table_.end(); ++it) {
-	    //     *it = std::make_tuple(OPERATOR_TYPE::NULLOP, -1, -1, -1);
-	    // }
-	}
+    void clear_cache() {
+        // for (auto it =  cache_table_.begin(); it != cache_table_.end(); ++it) {
+        //     *it = std::make_tuple(Operation::NULLOP, -1, -1, -1);
+        // }
+    }
 
-	Tsdd& read_cache(const OPERATOR_TYPE op, const Tsdd& lhs, const Tsdd& rhs) {
+	Tsdd read_cache(const OPERATOR_TYPE op, const Tsdd& lhs, const Tsdd& rhs) {
 	    auto key = calc_key(op, lhs, rhs);
 	    auto res = cache_table_[key];
-
 	    if (std::get<0>(res) == op &&
 	        std::get<1>(res) == lhs &&
 	        std::get<2>(res) == rhs) {
-	        return std::get<3>(res);
+	        return (std::get<3>(res));
 	    }
-	    return (*new Tsdd(-1, -1));
+	    return (*new Tsdd(-1, -1));  // corresponds to empty_
 	}
 
 	size_t calc_key(const OPERATOR_TYPE op, const Tsdd& lhs,  const Tsdd& rhs) {
@@ -49,12 +50,12 @@ public:
 	    return key % cache_table_.size();
 	}
 
-	// void print_cache_table() const {
-	//     std::cout << "cache_table:-------------------------------" << std::endl;
-	//     for (auto& x: cache_table_) {
-	//         std::cout << std::get<0>(x) << std::get<1>(x) << std::get<2>(x) << std::get<3>(x) << std::endl;
-	//     }
-	// }
+	void print() const {
+	    cout << "cache_table:-------------------------------" << endl;
+	    for (auto& x: cache_table_) {
+	        cout << get<0>(x) << get<1>(x).addr_ << get<2>(x).addr_ << get<3>(x).addr_ << endl;
+	    }
+	}
 public:
     const unsigned int INIT_SIZE = 1U<<10;
     std::vector<cache_entry> cache_table_;
